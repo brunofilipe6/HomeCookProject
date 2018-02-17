@@ -1,0 +1,121 @@
+$image-size:   100%;
+$title-color: $theme-primary;
+$field-title-color: #AAAAAA;
+
+.settings {
+
+  #user-settings {
+    margin-top: 20px;
+  }
+
+  .btnDark {
+    i {
+      color: #FFFFFF;
+    }
+    background-color: $theme-primary;
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+    padding: 0px 6px;
+  }
+  .btnLight {
+    i {
+      color: #FFFFFF;
+    }
+    background-color: $theme-primary-bg;
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+    padding: 0px 6px;
+  }
+  .profile-image {    
+    padding-right: 15px;
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: $image-size;
+    }
+  }
+  #preferences {
+    .form-group i.servings {
+      color: $title-color;
+      //margin-right: 10px;
+    }
+  }
+  .title {
+    color: $title-color;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  .form {
+    .form-center {
+      text-align: center;
+    }
+    .form-right {
+      text-align: right;
+    }
+    .form-group {
+      .control-label {
+        color: $field-title-color;
+        text-transform: uppercase;
+        font-weight: normal;
+      }
+      .inline-input {
+        display: inline-block;
+        background-color: #FFFFFF;
+        width: 60px;
+        margin: 0px 0px;
+        height: 30px;
+        padding: 3px 6px;
+        text-align: center;
+      }
+      &.icon-group {
+        label {
+          position: absolute;
+          width: 30px;
+          top: 30%;
+          text-align: center;
+        }
+
+        input {
+          padding-left: 30px;
+        }
+      }
+    }
+
+    .submit {
+      color: #FFFFFF;
+      background-color: $title-color;
+      outline: none;
+    }
+
+    .cancel {
+      color: $theme-primary-bg;
+      border-color: $theme-primary-bg;
+      outline: none;
+
+      &:hover {
+        background-color: lighten($theme-primary-bg, 40%);
+      }
+    }
+
+    .alergias {
+      color: #FFFFFF;
+      background-color: gray;
+      outline: none;
+      margin: -13px 25px 40px 0;
+    }
+  }
+
+  input[type="number"] {
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; /* Apparently some margin are still there even though it's hidden */
+    }
+  }
+
+  #ingredients-avoid .container {
+    width: 100%;
+  }
+}

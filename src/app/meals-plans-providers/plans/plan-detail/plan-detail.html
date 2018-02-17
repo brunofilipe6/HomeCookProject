@@ -1,0 +1,61 @@
+<div class="container plan-detail">
+  
+  <div id="recipe-modal" class="modal fixed-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header close-div">
+          <a (click)="closeModal()"></a>       
+        </div>
+        <div class="modal-body">
+          <button *ngIf="isAdmin" (click)="navigateToRecipe(selectedRecipeId)" class="btn btn-default" type="button">Ir para detalhe da receita</button>
+
+          <recipe-detail *ngIf="selectedRecipeId" [recipeId]="selectedRecipeId" 
+                         (updateFavorite)="updateStateFavorite(selectedRecipeId,$event.state)" (closeModal)="closeModal()">
+          </recipe-detail>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="highlight text-center">{{plan?.title}}</h3>
+  <h4 class="subtitle text-center"> 
+    <span class="bought-icon" *ngIf="plan && plan.bought">
+      <i class="fa fa-fw fa-check-circle"></i>
+      Já comprou este plano.
+    </span>
+  </h4>
+
+  <div class="base-info" *ngIf="plan">
+    <div class="image" [ngStyle]="{'background-image': 'url(' + getPlanImage() + ')' }"></div>
+    <span class="punchline">
+      <div class="provider-image" [ngStyle]="{'background-image': 'url(' + plan.provider.image + ')' }"></div>
+      <blockquote class="description">{{plan.description}}</blockquote>
+    </span>
+  </div>
+
+  <tabs>
+    <tab tabTitle="Pequeno-almoço" [hidden]="!isBreakfastPlan">
+      <div *ngFor="let meal of meals | planmealpipe: mealTimes[0]" class="recipe-item col-xs-12 col-sm-6 col-md-3">
+        <recipe-preview [recipe]="meal.recipe" [bought]="plan.bought" (click)="selectRecipe(meal.recipe)"></recipe-preview>
+      </div>
+    </tab>
+    <tab tabTitle="Almoço" [hidden]="!isLunchPlan">
+      <div *ngFor="let meal of meals | planmealpipe: mealTimes[1]" class="recipe-item col-xs-12 col-sm-6 col-md-3">
+        <recipe-preview [recipe]="meal.recipe" [bought]="plan.bought" (click)="selectRecipe(meal.recipe)"></recipe-preview>
+      </div>
+    </tab>
+    <tab tabTitle="Jantar" [hidden]="!isDinnerPlan">
+      <div *ngFor="let meal of meals | planmealpipe: mealTimes[2]" class="recipe-item col-xs-12 col-sm-6 col-md-3">
+        <recipe-preview [recipe]="meal.recipe" [bought]="plan.bought" (click)="selectRecipe(meal.recipe)"></recipe-preview>
+      </div>
+    </tab>
+  </tabs>
+
+  <div class="col-xs-12 buy">
+    <div *ngIf="plan && !plan.bought">
+      <span class="price">Comprar por {{ getPlanPriceToLocaleString() }} &euro;</span>
+      <paypal-button [id]="plan.id" [price]="getPlanPrice()"></paypal-button>
+    </div>
+  </div>
+
+</div>

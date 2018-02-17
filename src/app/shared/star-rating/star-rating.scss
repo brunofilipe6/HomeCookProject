@@ -1,0 +1,13 @@
+.star-rating {
+  &:hover {
+        background-position: -24px 0;
+  }
+
+  i {
+    color: $theme-primary-bg;
+  }
+  
+  .fa-star-o {
+    color: rgba(128, 128, 128, 0.5);
+  }
+}

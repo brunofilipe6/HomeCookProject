@@ -1,0 +1,225 @@
+$planner-plan-height: 5em;
+$planner-plan-border-radius: 5px;
+
+$border-radius: 8px;
+
+meal-planner {
+
+  .planner {
+    
+    margin-bottom: 20px;
+    .planner-day {
+
+      /* Undo of damn panel class */
+      margin-bottom: 0 !important;
+      background-color: inherit !important;
+      border: none !important;
+      border-radius: 0 !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+
+      /* Heading style for regular days */
+      & > h3 {
+        text-align: center;
+
+        padding: 8px;
+        border-radius: $border-radius;
+
+        & > span {
+          padding-left: 6%;
+          padding-right: 6%;
+        }
+
+        /* Collapsed day */
+        &.collapsed {
+          color: $soft-color;
+          background-color: $theme-secondary;
+        }
+
+        /* Expanded day */
+        &:not(.collapsed) {
+          color: $theme-secondary;
+          & > span {
+            background: $page-bg;
+          }
+        }        
+      }
+
+      /* Heading style for first (past) day - only change to a lighter color */
+      &:first-child > h3 {
+        /* Collapsed day */
+        &.collapsed {
+          color: $soft-color;
+          background-color: $theme-primary
+        }
+
+        /* Expanded day */
+        &:not(.collapsed) {
+          color: $theme-primary;
+        }
+      }
+
+      /* Set of meals style */
+      .meals-of-day {
+
+        border: solid 2px;
+        border-color: $theme-secondary;
+        border-radius: $border-radius;
+        padding-left: 7px;
+        padding-right: 7px;
+        padding-top: 20px;
+        padding-bottom: 5px;
+
+        /* Trying to be smart about heights */
+        /*display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        overflow: hidden;
+        & > div {
+          flex: 1;
+        }*/
+
+        /* Because its a fcking row */
+        margin-right: 0px;
+        margin-left: 0px;
+
+        transition: margin-top 0.8s ease;
+      }
+
+      /* Set of meals style for first (past) day - only change to a lighter color */
+      &:first-child > .control-meals-visibility > .meals-of-day {
+        border-color: $theme-primary;
+      }
+
+      /* When one day is expanded, meals of day goes up */
+      .control-meals-visibility.in > .meals-of-day {
+          margin-top: -32px;        
+      }
+  
+      /* Crazy standards. No space for everything. Reducing paddings.*/
+      .meal-holder {
+        vertical-align: top;
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+
+      .remove-meal {
+        border-radius: 50%;
+        padding: 3px;
+        height: 18px;
+        width: 18px;
+        line-height: 12px;
+        text-align: center;
+        color: $soft-color;
+        background: $theme-secondary;
+        position: absolute;
+        right: -2px;
+        top: -10px;
+        opacity: 0.9;
+
+        & > .fa-times {
+          color: $soft-color;
+          height: 12px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .bought-plans {
+    
+    margin-bottom: 20px;
+
+    .buy-more-plans {
+      text-align: center;
+      padding-top: 2em;
+
+      div {
+        margin-bottom: 0.5em;
+      }
+    }
+
+    .plan-holder {
+      margin-top: 20px;
+      border-radius: $planner-plan-border-radius;
+      border: 2px solid $theme-primary;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .plan {
+      position: relative;
+      display: flex;
+      height: $planner-plan-height;
+      cursor: pointer;
+
+      .title {
+        flex-grow: 1;
+        font-size: 1.2em;
+        line-height: 4em;
+        padding-left: 1em;
+      }
+
+      &:not(.collapsed) {
+        .provider-image {
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      .provider-image {
+        width: $planner-plan-height;
+        height: $planner-plan-height;
+        border-top-right-radius: $planner-plan-border-radius;
+        border-bottom-right-radius: $planner-plan-border-radius;
+        float: right;
+        transform: scale(1);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+    }
+
+    .plan-info {
+      border-top: 1px solid $theme-primary;
+      padding: 2em;
+
+      .plan-type {
+        font-size: 1.1em;
+        
+        span {
+          font-weight: bold;
+        }
+      }
+
+      .description {
+        font-style: italic;
+        color: #999;
+        font-size: 1.1em;
+      }
+    }
+
+    .add-to-planner {
+      margin-top: 15px;
+    }
+  }
+
+}
+
+.empty-card {
+  height: 250px;
+  border: 2px dashed $theme-secondary;
+  border-radius: 5px;
+  opacity: 0.5;
+  margin-bottom: 15px;
+  display: table;
+  width: 100%;
+
+  .plus-container {
+    vertical-align: middle;
+    display:table-cell;
+    color: $theme-secondary;
+
+    i {
+      color: $theme-secondary;
+    }
+  }
+}

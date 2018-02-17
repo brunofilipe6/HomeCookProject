@@ -1,0 +1,129 @@
+$price-plan-color: #9f9f9f;
+$price-plan-border-color: #e8e8e8;
+$price-plan-title-color: #555555;
+$price-plan-green-color: #33c4b6;
+$price-plan-red-color: #c6463d;
+
+.price-plans {
+  color: $price-plan-color;
+  font-weight: 400;
+
+  .green {
+    color: $theme-primary;
+  }
+
+  .red {
+    color: $price-plan-red-color;
+  }
+
+  .plan {
+      box-sizing: border-box;
+      // height: 380px;
+      display: inline-block;
+      text-align: center;
+      position: relative;
+      padding-bottom: 20px;
+      background: $soft-color;
+
+      &-inner {
+        box-sizing: border-box;
+        border: 1px solid $theme-primary;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        header {
+          .name {
+            color: $price-plan-title-color;
+            font-weight: 300;
+            font-size: 2em;
+            padding-top: 5px;
+          }
+
+          .price {
+            font-weight: bold;
+
+            span {
+              font-weight: normal;
+            }
+          }
+
+          .description {
+            font-size: 1em;
+            font-weight: 600;
+            padding: 15px 10px;
+            color: $price-plan-green-color;
+            border-bottom: 1px solid $price-plan-border-color;
+            position: relative;
+          }
+        }
+
+        .content {
+          flex-grow: 1;
+          padding: 10px 15px;
+          margin-top: 15px;
+          font-size: $font-size-xl;
+
+          ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            color: #777;
+
+            li {
+              margin-bottom: 15px;
+              text-align: left;
+
+              &.crossed {
+                opacity: 0.5;
+              }
+
+              i {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+
+        footer {
+          
+          a {
+            width: 100%;
+            font-weight: bold;
+            color: $price-plan-title-color;
+            display: block;
+            padding: 1.7em 0;
+            background-color: $price-plan-border-color;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+
+            &:hover {
+              cursor: pointer;
+              box-shadow: inset 0 0 100px 20px rgba(0,0,0,.2);
+            }
+          }
+        }
+      }
+
+      &.selected {
+        
+        .plan-inner {
+          border: 3px solid $theme-primary;
+        }
+
+        .description {
+          border-color: $price-plan-green-color;
+        }
+
+        footer a {
+          color: white;
+          background-color: $price-plan-green-color;
+        }
+      }
+
+    }
+}

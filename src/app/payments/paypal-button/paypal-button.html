@@ -1,0 +1,26 @@
+<div class="paypal-button">
+  <form *ngIf="subscription" ngNoForm action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="JZ9YMX63CY2S4">
+    <table>
+      <tr>
+        <td><input type="hidden" name="on0" value="Subscrição">Subscrição</td>
+      </tr>
+      <tr>
+        <td><select name="os0">
+          <option value="Mensal">Mensal €2,99 EUR</option>
+	        <option value="Anual">Anual €29,99 EUR</option>
+        </select> </td>
+      </tr>
+    </table>
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="image" src="http://homecook.pt/assets/images/paypal-button.png" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+  </form>
+
+  <form *ngIf="!subscription" #form ngNoForm>
+    <input type="image" (click)="submit(form, $event)" src="http://homecook.pt/assets/images/paypal-button.png" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+  </form>
+
+</div>

@@ -1,0 +1,182 @@
+$title-color: $theme-primary;
+
+recipe-edit  {
+  .btn-recipe{
+      font-size: 12px solid bold;
+      border-radius: 20px !important;
+      outline: none !important;
+  }
+
+  .type-food{
+      display: inline-block;
+      text-align: left;
+      width: 100%;
+      margin: 15px 0;
+    }
+
+  .btng{ 
+    border-color:#909D38;
+    background-color: #909D38;
+  }
+  .btna{ 
+    background-color: #e6e6e6;
+    border-color: #adadad
+  }
+
+  .col{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 15px;  
+  }
+
+  .lineingred{
+        margin: 0px 0px;
+        height: 30px;
+        padding: 3px 6px;
+        text-align: center;
+        display: inline-block; 
+  }   
+
+  #description{
+    resize:vertical; 
+    min-height: 200px;
+  }
+ 
+  p{
+    margin: 0 0 0px;
+    color: #909D38;
+  }
+
+
+  .highlighted{
+    background-color: #909D43!important;
+    color:white!important;
+  }
+
+  .profile-image {
+    margin-top: 20px;
+    background-attachment:fixed;
+    background-size: contain;
+    width: 100%;
+    height: 300px;;
+    background: url('assets/images/veggies_pattern.png') no-repeat center center;
+    position: relative;
+  }
+
+  .recipe-image{
+    height: 30%;
+    width: 100%;
+    position: relative;
+    transform: scale(1);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .center-things{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+  }
+
+  /* Setting style for edit-photo action on image */
+    .edit-photo > i {
+      margin: 0px;
+      cursor: pointer;
+      font-size: 2.5em;
+      background-image: linear-gradient(0deg, rgba(256, 256, 256, 0.9) -60%, transparent 90%);
+      color: black;
+    }
+
+  .titles{
+    color: $theme-primary-bg;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .glyphicon-plus:hover { 
+    color: green;
+  }
+
+  .changethisone span{
+    background-color: #ffffff;
+    height: 100%;
+  }
+
+  .changethisone input{
+    border-right-style: none;
+  }
+
+  .form-control{
+    height: auto;
+  }
+
+  #change-image {
+    margin: auto;
+    display: block;
+  }
+  #back{
+    background-color: rgba(181,181,69,0.8);
+  }
+
+  #preferences {
+    .form-group i {
+      margin-right: 10px;
+    }
+  }
+
+  .form {
+
+    input[type="number"] {
+      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0; /* Apparently some margin are still there even though it's hidden */
+      }
+    }
+
+
+    .form-group {
+
+      .inline-input {
+        display: inline-block;
+        width: 200px;
+        margin: 0 5px;
+
+        input {
+          height: 28px;
+          padding: 3px 6px;
+        }
+      }
+
+      &.icon-group {
+        label {
+          position: absolute;
+          width: 30px;
+          top: 30%;
+          text-align: center;
+        }
+
+        input {
+          padding-left: 30px;
+        }
+      }
+
+    }
+
+    .submit {
+      color: #ffffff;
+    }
+
+    .cancel {
+      cursor: pointer;
+      margin-left: 15px;
+    }
+  }
+
+}

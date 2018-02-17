@@ -1,0 +1,98 @@
+<div id="auth" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content row">
+
+      <div class="hidden-xs hidden-sm hidden-md col-lg-5">
+        <div class="perfil-image"> </div>
+      </div>
+      <div class="col-xs-12 col-lg-7">
+
+        <div class="modal-header close-div">
+          <a (click)="close()"></a>
+        </div>
+        <div class="modal-body">
+          
+            <tabs>
+                <tab id="0" tabTitle="Entrar">
+                  <form [formGroup]="loginForm" (ngSubmit)="login()" id="login-form" class="form">
+                    
+                    <div class="col-xs-12 tab-intro-text">
+                      Se já se encontra registado, utilize os campos abaixo para entrar na plataforma.
+                    </div>
+                    <div class="form-content">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="icon-group">
+                          <label for="email" class="icon fa fa-at"></label>
+                          <input id="email" type="email" formControlName="email" placeholder="Email" class="form-control">
+                        </div>
+                        <error-message [control]="loginForm.controls.email"></error-message>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="icon-group">
+                          <label for="password" class="icon fa fa-lock"></label>
+                          <input id="password" type="password" formControlName="password" placeholder="Password" class="form-control">
+                        </div>
+                        <error-message [control]="loginForm.controls.password"></error-message>
+                      </div>
+
+                      <!--<a style="font-size: 13px;text-transform: initial;text-decoration: underline;">Esqueceste-te da tua password?</a>-->
+                    </div>
+
+                    <button type="submit">
+                      Entrar
+                      <i class="fa fa-caret-right"></i>
+                    </button>
+                  </form>
+                </tab>
+                <tab id="1" tabTitle="Registar">
+                  <form [formGroup]="registerForm" (ngSubmit)="register()" id="register-form" class="form">
+
+                    <div class="col-xs-12 tab-intro-text">
+                      Se ainda não tem conta, utilize os campos abaixo para a criar - <u>é grátis</u>.
+                    </div>
+
+                    <div class="form-content">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="icon-group">
+                          <label for="email" class="icon fa fa-at"></label>
+                          <input id="email" type="email" formControlName="email" placeholder="Email" class="form-control">
+                        </div>
+                        <error-message [control]="registerForm.controls.email"></error-message>
+                      </div>
+                      <div formGroupName="passwords">
+                        <div class="form-group">
+                          <label for="password" class="control-label">Password</label>
+                          <div class="icon-group">
+                            <label for="password" class="icon fa fa-lock"></label>
+                            <input id="password" type="password" formControlName="password" placeholder="Password" class="form-control">
+                          </div>
+                          <error-message [control]="registerForm.controls.passwords.controls.password"></error-message>
+                        </div>
+                        <div class="form-group">
+                          <label for="confirmPassword" class="control-label">Confirme a Password</label>
+                          <div class="icon-group">
+                            <label for="confirmPassword" class="icon fa fa-lock"></label>
+                            <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirme a Password" class="form-control">
+                          </div>
+                          <error-message [control]="registerForm.controls.passwords.controls.confirmPassword"></error-message>
+                        </div>
+                        <error-message [control]="registerForm.controls.passwords"></error-message>
+                      </div>
+                    </div>
+
+                    <button type="submit">
+                      Registar
+                      <i class="fa fa-caret-right"></i>
+                    </button>
+                  </form>
+                </tab>
+            </tabs>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

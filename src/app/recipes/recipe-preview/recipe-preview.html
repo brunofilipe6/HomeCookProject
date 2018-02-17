@@ -1,0 +1,36 @@
+<div class="recipe-item">
+  <div class="card">
+    <div class="card-image card-img-top" [ngStyle]="{'background-image': 'url(https://lh3.googleusercontent.com/2AnsuVvI6NRfP3kWplTpwd6uQElGIcK9WQSgyNGcPYvxmlQYn9-pislMdamOURYWRLApaNe3fxXlkvPhUo-vnqI=s2-c-e365)'}"></div>
+    <div class="card-image card-img-top" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}"></div>
+    <div class="card-gradient"></div>
+  
+    <div class="content card-info">
+      <!--<star-rating [rating]="recipe.rating"></star-rating>-->
+      <h4 class="name upper-case overflow-ellipsis">{{recipe.name}}</h4>
+      <h5 class="description overflow-ellipsis">{{recipe.showDescription}}</h5>
+      <!--<p class="price upper-case">{{recipe.formmatedPrice}} &euro; / pessoa</p>-->
+
+      <div class="bottom">
+        
+        <div *ngFor="let group of recipe.groups">
+
+          <div *ngIf="group.name == 'Vegetariana'" title="Vegetariana" class="col-sm-1 group-property group">
+                <div class="group-property-icon group-vegan-icon"> <i></i> </div>
+          </div>
+          <div *ngIf="group.name == 'Carne'" title="Carne" class="col-sm-1 group-property group">
+                <div class="group-property-icon group-meat-icon"> <i></i> </div>
+          </div>
+          <div *ngIf="group.name == 'Peixe'" title="Peixe" class="col-sm-1 group-property group">
+                <div class="group-property-icon group-fish-icon"> <i></i> </div>
+          </div>
+
+        </div>
+
+        <span class="favorite" *ngIf="bought" (click)="setFavorite($event)">
+          <i class="fa fa-lg" [class.fa-heart]="recipe.isFavorite" [class.fa-heart-o]="!recipe.isFavorite"></i>
+        </span>
+        
+      </div>
+    </div>
+  </div>
+</div>

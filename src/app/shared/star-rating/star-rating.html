@@ -1,0 +1,4 @@
+<span *ngFor="let number of numbers" class="star-rating" (mouseover)="mouseOver($event,number)" (mouseout)="mouseOut($event)" (click)="changeRating($event,number)">
+    <i *ngIf="isFilled(number)" title="{{titles[number-1]}}" class="fa fa-star" aria-hidden="true"></i>
+    <i *ngIf="!isFilled(number)" title="{{titles[number-1]}}" class="fa fa-star-o" aria-hidden="true"></i>
+</span>

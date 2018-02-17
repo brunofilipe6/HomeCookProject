@@ -1,0 +1,73 @@
+provider-viewer {
+
+  .title-holder {
+    margin-bottom: 15px;
+  }
+
+  .container{
+    margin-top: 10px;
+    background-attachment:fixed;
+    //background: url('assets/images/veggies_pattern.png') no-repeat center center;
+    padding-bottom: 25px;
+  }
+
+  .background-title{
+    margin: 0 auto;
+    width: 350px;
+    background: white;
+    padding-bottom: 20px;
+  }
+
+  .title{
+    margin-top: 50px;
+    text-align: center;
+    color:	$theme-primary;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  
+  .my-container{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px solid $theme-primary;
+    background-size: cover;
+    margin: 10px auto 10px auto;
+
+    @media screen and (max-width: $col-xs) {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .my-container:hover{
+    box-shadow: inset 0 0 0 1000px rgba(181, 181, 69, 0.8);
+    border: 4px solid rgba(181, 181, 69, 0.8);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .my-container:hover .text{
+    opacity: 1;
+  }
+
+
+  .text{
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    opacity: 0;
+  }
+
+  .text-bold{
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+}

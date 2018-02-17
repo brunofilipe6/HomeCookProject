@@ -1,0 +1,137 @@
+<div id="recipe-browser" class="modal fixed-modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header close-div">
+        <a (click)="closeBrowser()"></a>
+      </div>
+      <div class="modal-body">
+        <recipe-list *ngIf="addingMeal" [showFilters]="false"
+          [fromPlanner]="true" [addToPlanner]="true"
+          (insertRecipe)="addRecipeToPlan($event)" >
+        </recipe-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="recipe-modal" class="modal fixed-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header close-div">
+          <a (click)="closeDetails()"></a>       
+        </div>
+        <div class="modal-body">
+            <button *ngIf="isAdmin" (click)="navigateToRecipe(viewRecipeId)" class="btn btn-default" type="button">Ir para detalhe da receita</button>
+
+          <recipe-detail *ngIf="viewRecipeId" [recipeId]="viewRecipeId" [addToPlanner]="false" (closeModal)="closeDetails()"></recipe-detail>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<h3 class="highlighted text-center"  *ngIf="plan && plan.id" >
+    Plano {{plan.title}}
+</h3>
+<h3 class="highlighted text-center" *ngIf="plan && !plan.id" >
+    Novo Plano
+</h3>
+
+
+<div *ngIf="loaded" class="col-md-6 col-xs-12">
+
+    <div class="plan-data col-xs-12 affix">
+        <form [formGroup]="form" class="form" (ngSubmit)="savePlan()">
+            
+            <div class="form-group">
+                <label for="title" class="control-label titles">Título</label>
+                <input id="title" type="text" formControlName="title" [(ngModel)]="plan.title" placeholder="" class="form-control" >
+                <error-message [control]="form.controls.title"></error-message>
+            </div>
+            <div class="form-group">
+                <label for="description" class="control-label titles">Descrição</label>
+                <textarea rows="10" id="description" formControlName="description" 
+                    [(ngModel)]="plan.description" placeholder="" class="form-control"
+                    >
+                </textarea>
+                <error-message [control]="form.controls.description"></error-message>
+            </div>
+
+            <div class="form-group">
+                <label for="planType" class="titles">Tipo de plano</label>
+                <div class="row">
+                    <div *ngFor="let t of planTypes" class="col-lg-3 col-sm-6">
+                        <label>
+                            <input type="radio" formControlName="planType" [(ngModel)]="plan.planType" name="planType" [value]="t"/>
+                            {{t}}
+                        </label>
+                    </div>
+                </div>
+                <error-message [control]="form.controls.planType"></error-message>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <div class="form-group form-right">
+                <button type="submit" class="submit btn">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="loaded" class="planner col-md-6 col-xs-12" >
+    
+    <div *ngIf="!plan.id" class="error-message alert alert-warning plan-alert">
+       <i class="fa fa-bell-o "aria-hidden="true"></i> Guarde o plano para editar as suas refeições
+    </div>
+
+    <div *ngIf="plan.id && (nMealsInPlan - nPlannedMeals > 0)" class="error-message alert alert-info plan-alert">
+       <i class="fa fa-bell-o "aria-hidden="true"></i> Tem {{ nMealsInPlan - nPlannedMeals}} refeições por planear
+    </div>
+
+    <!-- Going through number of days in plan -->
+    <div class="panel planner-day" *ngFor="let day of planMealsCalendar; let i=index ">
+        
+        <h3 class="text-uppercase " 
+            [class.collapsed]="!plan.id" [class.disabled] ="!plan.id" [class.clickable]="plan.id"
+            [attr.data-toggle]="plan.id?'collapse':''" 
+            [attr.data-target]="'#date-meal-' + i"  [attr.aria-expanded]="'true'" 
+        >
+            <span>{{ i+1 }}º dia</span>        
+        </h3>
+
+        <div id="date-meal-{{i}}"  class="collapse in control-meals-visibility" *ngIf="plan.id">
+            <div class="meals-of-day row">
+
+                <!-- Going through meals on the day -->
+                <div *ngFor="let mealTime of mealTimes; let j = index" class="meal-holder col-xs-12 col-sm-4 col-md-4 no-padding" 
+                [class.disabled]="plan.planType !== 'Full' && mealTime!==plan.planType">
+
+                    <span class="clickable pull-right remove-meal" *ngIf="day[mealTime] !== null" (click)="removeMeal(i, mealTime)"><i class="fa fa-times"></i></span>
+
+                    <meal-preview *ngIf="day[mealTime] !== null"
+                        [recipe]="day[mealTime].recipe" [showServings]="false"
+                        [mealTime]=" mealTimesTranslations[mealTime] ? mealTimesTranslations[mealTime] : mealTime" 
+                        (openRecipeDetail)="openDetails(day[mealTime].recipe)"
+                    >
+                    </meal-preview> 
+
+                    
+                    <div class="empty-card text-center" *ngIf="day[mealTime] === null ">
+                        <div class="plus-container"> 
+                            <a (click)="addMeal(i, mealTime)" style="cursor:pointer;" *ngIf="(plan.planType == 'Full' || mealTime==plan.planType)">
+                                <i class="fa fa-plus fa-3x"></i>
+                                <br>
+                                Adicionar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Going through meals on the day -->
+
+            </div>
+        </div>
+    </div>
+    <!-- / Going through days in calendar -->
+    
+</div>

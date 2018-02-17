@@ -1,0 +1,50 @@
+checkbox-group {
+
+    h3{
+        color: $theme-primary-bg;
+        font-size: 16px solid bold;
+    }
+    
+    .type-food{
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .type-food > span{
+        height: 100%;
+    }
+
+    .btn {
+        font-size: 12px solid bold;
+        border-radius: 20px;
+        outline: none !important;
+    }
+
+    .food {
+        background-color: $page-bg;
+        border-color: $theme-primary-bg;
+        color: $theme-primary-bg;
+        width: 90px;
+        padding: 0;
+        height: 27px;
+        box-shadow: none;
+        margin-right: 2px;
+
+        &.checked {
+        background-color: $theme-primary-bg;
+        color: $soft-color;
+        }
+        &.unchecked{
+        background-color: $page-bg;
+        }
+    }
+    
+    hr{
+        margin-top: 8px;
+        margin-bottom: 8px;
+        border: 0;
+        border-top: 1px solid #eee;
+    }
+}

@@ -1,0 +1,64 @@
+<div class="main">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars fa-2x"></span>
+				</button>
+				<a *ngIf="!isLoggedIn" (click)="_navigateToTarget('#welcome')" class="navbar-brand">
+					<img alt="Home Cook" src="/assets/logo.png" height="40" class="">
+				</a>
+				<a *ngIf="isLoggedIn" routerLink="home" routerLinkActive="active" class="navbar-brand">
+					<img alt="Home Cook" src="/assets/logo.png" height="40" class="">
+				</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right" *ngIf="!isLoggedIn">
+					<li (click)="_navigateToTarget('#features')"><a>Funcionalidades</a></li>
+					<li (click)="_navigateToTarget('#prices')"><a>Preços</a></li>
+					<li (click)="_navigateToTarget('#contacts')"><a>Contactos</a></li>
+					<li (click)="authenticate($event)"><a>Entrar <i class="fa fa-smile-o fa-fw"></i> Registar</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" *ngIf="isLoggedIn">
+					<li><a routerLink="home" routerLinkActive="active"><span>Planeador</span></a></li>
+					<li><a routerLink="recipe-list" routerLinkActive="active"><span>Receitas</span></a></li>
+					<li><a routerLink="plans" routerLinkActive="active"><span>Planos</span></a></li>
+					<li><a routerLink="shopping-list" routerLinkActive="active">
+						<span>
+							<span class="hidden-sm hidden-md">Lista de </span>compras
+						</span>
+					</a></li>
+					<li class="premium" *ngIf="isFreeUser"><a routerLink="premium" routerLinkActive="active">
+						<span class="hidden-sm">Torna-te Pro!</span>
+						<i class="hidden visible-sm fa fa-star"></i>
+					</a></li>
+					<li *ngIf="hasRestrictedAccess"><a routerLink="manage-content" routerLinkActive="active">
+						<span>
+							<span class="hidden-sm hidden-md">Gerir </span>conteúdos
+						</span>
+					</a></li>
+					<li><a routerLink="settings" routerLinkActive="active">
+						<span class="visible-xs">O meu perfil</span>
+						<i class="hidden-xs fa fa-user-o"></i>
+					</a></li>
+					<li (click)="logout()"><a>
+						<span class="visible-xs">Sair</span>
+						<i class="hidden-xs fa fa-power-off"></i>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="main-content">
+		<router-outlet></router-outlet>
+	</div>
+
+	<footer class="footer text-center">
+		<p>© home<b>cook</b>, 2017 - Design da aplicação: <a style="color:white;text-decoration: underline;" href="http://www.bsolus.pt/">Bsolus</a></p>
+	</footer>
+
+	<auth-lock></auth-lock>
+
+</div>

@@ -1,0 +1,84 @@
+.roles {
+
+  .preemium-top {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    #first {
+      position: relative;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+      
+      .spacer {
+        flex-grow: 1;
+      }
+
+      .container {
+        padding: 48px 0;
+        z-index: 1;
+
+        h2 {
+          margin: 0 0 .5em;
+        }
+
+        p {
+          font-size: 1.5em;
+          margin: 0;
+        }
+      }
+
+      .preemium-bg {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: url('assets/premium.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    #second {
+      height: auto;
+
+      .feature {
+        @media (max-width:1200px) {
+          height: 180px;
+        }
+
+        .card {
+          box-shadow: none;
+          border: none;
+          height: initial;
+          top: 50%;
+          transform: translateY(-60%);
+          position: relative;
+          margin: 0;
+
+          .description {
+            display: none;
+          }
+        }
+
+      } 
+    }
+    
+    h2 {
+      text-align: left;
+    }
+
+  }
+
+  .comparison-container {
+    
+  }
+
+  .paypal-container {
+    padding: 0 0 4em 0em;
+    max-width: 264px;
+  }
+
+}

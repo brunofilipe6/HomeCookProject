@@ -1,0 +1,22 @@
+.tabs {
+  .tab-title {
+    cursor: pointer;
+    float: none;
+    width: 1%;
+    position: relative;
+    display: table-cell;
+
+    &.selected {
+      border-bottom: 3px solid;
+    }
+
+    a {
+      border-radius: 0;
+      color: #555555;
+
+      &:focus, &:hover {
+        background: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+$plan-provider-image-height: 5em;
+$plan-provider-border-radius: 5px;
+
+.plans {
+  .tab-content {
+    position: relative;
+    padding-top: 15px;
+  }
+
+  .tab-title {
+    font-size: 1.5em;
+
+    &.selected {
+      border-bottom: 2px solid $theme-secondary;
+    }
+  }
+
+  .empty-plans {
+    display: table;
+    height: $plan-provider-image-height;
+    & > div {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}

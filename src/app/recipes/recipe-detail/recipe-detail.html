@@ -1,0 +1,138 @@
+<div class="recipe-detail" *ngIf="recipe">
+  <div class="container-fluid" *ngIf="freeRecipe">
+          
+    <!-- Image -->
+    <div class="image" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}">
+
+      <div class="over-image">
+
+        <div class="col-xs-12 inner-content title-wrapper">
+          <!--Recipe title -->
+          <div class="upper-case text-center">
+            <span class="title">{{recipe.name}}</span>
+              <!--Recipe rating -->
+            <div class="rating-container">
+              <star-rating class="rating" [rating]="recipe.rating"> </star-rating>
+            </div>
+          </div>
+        </div>
+
+        <!-- Groups -->
+        <span>
+
+          <div *ngFor="let group of recipe.groups">
+
+            <div *ngIf="group.name == 'Vegetariana'" title="Vegetariana" class="col-md-1 group-property group">
+                  <div class="group-property-icon group-vegan-icon"> <i></i> </div>
+            </div>
+            <div *ngIf="group.name == 'Carne'" title="Carne" class="col-md-1 group-property group">
+                  <div class="group-property-icon group-meat-icon"> <i></i> </div>
+            </div>
+            <div *ngIf="group.name == 'Peixe'" title="Peixe" class="col-md-1 group-property group">
+                  <div class="group-property-icon group-fish-icon"> <i></i> </div>
+            </div>
+            
+          </div>   
+        </span>
+        <!-- Add to favorites -->
+        <span class="favorite pull-right" (click)="setFavorite($event)">
+          <i class="fa fa-2x" [class.fa-heart]="recipe.isFavorite" [class.fa-heart-o]="!recipe.isFavorite"></i>
+        </span>
+
+        <!-- Recipe properties -->
+        <div class="col-xs-12 bottom-content ">
+
+          <!-- Recipe dificulty property -->
+          <div class="hidden-xs col-sm-3">
+            <div class="recipe-property difficulty" title="Dificuldade">
+              <bar-classification class="bar-classification" [value]="recipe.difficulty" title="Dificuldade"></bar-classification>
+            </div>
+          </div>
+
+          <!-- Recipe time property on small/medium/large screen -->
+          <div class="hidden-xs col-sm-3">
+            <div class="recipe-property time" title="Tempo de preparação em minutos">
+              <div class="recipe-property-icon time-icon"> <i></i> </div>
+              <div class="recipe-property-value time-number">{{ recipe.time }}</div>
+            </div>
+          </div>
+
+          <!-- Recipe time property on extra small screen (hide min.)-->
+          <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+            <div class="recipe-property time" title="Tempo de preparação em minutos">
+              <div class="recipe-property-icon time-icon"> <i></i> </div>
+              <div class="recipe-property-value time-number">{{ recipe.time }}</div>
+            </div>
+          </div>
+
+          <!-- Recipe servings property -->
+          <div class="col-xs-6 col-sm-3">
+            <div class="recipe-property servings" title="Doses">
+              <div class="recipe-property-icon servings-icon"> <i></i> </div>
+              <div class="recipe-property-value servings-number">{{ servings }} </div>
+            </div>
+          </div >
+
+          <!-- Recipe price property on medium/large screen (show price per serving) -->
+          <div class="hidden-xs hidden-sm col-md-3">
+            <div class="recipe-property price" title="Preço por dose">
+              <div class="recipe-property-icon price-icon"> <i></i> </div>
+              <div class="recipe-property-value price-number">{{recipe.formmatedPrice}} &euro; por dose</div>
+            </div>
+          </div>
+
+          <!-- Recipe price property on small screen (show total price) -->
+          <div class="hidden-xs hidden-md hidden-lg col-sm-3">
+            <div class="recipe-property price" title="Preço">
+              <div class="recipe-property-icon price-icon"> <i></i> </div>
+              <div class="recipe-property-value price-number">{{ servings? ( recipe.getFormmatedPriceWithServings(servings) ) : (recipe.formmatedPrice ) }} &euro;</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- / Image -->
+
+    <!-- Recipe description container -->
+    <div class="container recipe-desc-container">
+        <!-- Recipe ingredients -->
+        <div class="col-xs-12 col-sm-3 col-md-3">
+        
+            <div class="ingredient-container">
+
+            <span class="section-title upper-case bold highlight">Ingredientes</span>
+            <ul class="ingredient-list">
+                <li *ngFor="let recipeIngredient of ingredients">
+                {{ recipeIngredient.quantity | number:'1.0-2'}} {{recipeIngredient.unit.name | lowercase }} de {{ recipeIngredient.ingredient.name| lowercase }}
+                </li>
+            </ul>
+            </div>
+            <div class="provider-container" *ngIf="provider">
+            <span class="section-title upper-case bold highlight" (click)="redirect(provider.id)">
+            Receita de 
+            <a title="Autor"> {{provider.name}} </a>
+            </span>
+            </div>
+        </div>
+        <!-- Recipe description -->
+        <div class="col-xs-12 col-sm-9 col-md-9">
+            <span class="section-title upper-case bold highlight">Modo de preparação</span>
+            <p class="description">{{ recipe.description }}</p>
+        </div>
+    </div>
+
+    <div class="pull-right bottom-button" *ngIf="addToPlanner">
+        <button type="button" class="btn btn-primary" aria-hidden="true" (click)="insert()">
+            Adicionar {{ mealTime? mealTime : 'ao Plano' }}
+        </button>
+    </div>
+    
+  </div>
+
+  <div class="container-fluid" *ngIf="!freeRecipe">
+      <roles></roles>
+  </div>
+</div>

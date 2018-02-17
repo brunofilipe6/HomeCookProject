@@ -1,0 +1,132 @@
+meal-preview {
+
+  .voterStyle{
+    width: 20px;
+    text-align: center;
+    color: #999; // It's gray
+  }
+
+  /** Poderá ser usado com uma imagem por exemplo */
+  .vote-button{
+    cursor: pointer;
+  }
+
+  /** Quando flutua pelo objeto */
+  .vote-button:hover{
+    color: black;
+  }
+
+  /* Crazy standands. No space. Reducing paddings. */
+  .full-card-inner-content > div {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .media-full-width {
+    width: 100%;
+    // TODO check this
+    height: 130px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .recipe-heading {
+    .meal-time {
+      text-transform: uppercase;
+      color: $theme-primary; 
+      font-size: $font-size-xs;
+    }
+    h4 {
+      text-transform: uppercase;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    p {
+      line-height: $font-size;
+      margin-bottom: 15px;
+      &.continues:after {
+        content: "...";
+      }
+    }
+  }
+
+
+  // When xs and lg, elements are side by side, align center
+  // Between xs e lg, elements are stacked horizontally, so strip them of center align  
+
+  /* Custom, iPhone Retina */ 
+  @media only screen and (min-width : 320px) {
+    .servings {
+      text-align: center;
+    }
+
+    bar-classification {
+      margin: auto;
+    }
+  }
+
+  /* Extra Small Devices, Phones */ 
+  @media only screen and (min-width : 480px) {
+     .servings {
+      text-align: center;
+    }
+
+    bar-classification {
+      margin: auto;
+    }
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width : 768px) {
+     .servings {
+      text-align: left;
+    }
+
+    bar-classification {
+      margin: none;
+    }
+  }
+
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width : 992px) {
+     .servings {
+      text-align: left;
+    }
+
+    bar-classification {
+      margin: none;
+    }
+  }
+
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width : 1200px) {
+     .servings {
+      text-align: center;
+    }
+
+    bar-classification {
+      margin: auto;
+    }
+  }
+  
+  .recipe-time,
+  .servings
+  {
+    text-transform: uppercase;
+    font-size: $font-size-xs;
+    &  > i {
+      margin-right: 1px;
+      line-height: $font-size-xs;
+    }
+    .vote-button {
+      font-size: 8px;
+    }
+    .vote-count {
+      width: 5px;
+      margin-right: 3px;
+      display: inline-block;
+    }
+  }
+}
+

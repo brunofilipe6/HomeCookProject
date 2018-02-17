@@ -1,0 +1,17 @@
+<div class="features container">
+  <div class="row">
+    <div class="feature col-xs-12 col-md-6 col-lg-3" *ngFor="let feature of features">
+        <div class="card feature-name">
+          <div class="col-xs-12">
+            <img src="{{feature.icon}}" width="65" height="65"/>
+            <div class="feature-title">
+              <span class="text-uppercase highlight">{{feature.name}}</span>
+            </div>
+          </div>
+          <div class="col-xs-12 description">
+            {{feature.description}}
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

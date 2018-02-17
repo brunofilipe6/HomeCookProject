@@ -1,0 +1,122 @@
+<div class="container recipe-list">
+
+  <div id="recipe-modal" class="modal fixed-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header close-div">
+          <a (click)="closeModal()"></a>       
+        </div>
+        <div class="modal-body">
+          <button *ngIf="isAdmin" (click)="navigateToRecipe(selectedRecipeId)" class="btn btn-default" type="button">Ir para detalhe da receita</button>
+
+          <recipe-detail *ngIf="selectedRecipeId" [recipeId]="selectedRecipeId" [servings]="selectedRecipeServings" (insertRecipe)="insertRecipe.emit($event)"
+            [addToPlanner]="addToPlanner" [mealTime]="mealTime" (closeModal)="closeModal()" 
+            (updateFavorite)="updateStateFavorite(selectedRecipeId,$event.state)"></recipe-detail>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 col-sm-8">
+      <div class="row title">
+        <h3 class="highlight text-center">
+          Pesquisa de receitas
+        </h3>
+        <h4 class="highlight text-center" *ngIf="breakfast">Pequeno-almoço</h4>
+        <h4 class="highlight text-center" *ngIf="lunchdinner">Almoço/Jantar</h4>
+        <h4 class="subtitle text-center">Usa os filtros disponíveis para encontrares o que procuras mais rapidamente.</h4>
+        <a *ngIf="canAddRecipe" class="btn btn-default pull-right" (click)="createRecipe()">
+          <i class="fa fa-fw fa-plus"></i> Adicionar receita
+        </a>
+      </div>
+
+      <form [formGroup]="searchForm" class="form">
+        <div class="form-content">
+          <div class="form-group">
+            <div class="icon-group">
+              <label for="search" class="icon fa fa-search"></label>
+              <input id="search" type="text" formControlName="search" class="form-control">
+            </div>
+          </div>
+
+          <div class="fields col-md-12">
+
+            <div class="col-xs-12 filter-line">
+              <span *ngIf="showFilters" class="hidden-xs hidden-sm filter-text upper-case bold">Categoria:</span>
+
+              <div *ngIf="showFilters" class="pull-left">
+                <toggle-button [(toggle)]="veganSelect">Vegetariana</toggle-button>
+                <toggle-button [(toggle)]="meatSelect">Carne</toggle-button>
+                <toggle-button [(toggle)]="fishSelect">Peixe</toggle-button>
+              </div>
+            </div>
+
+            <div class="col-xs-12 filter-line">
+              <span class="hidden-xs hidden-sm filter-text upper-case bold">Ordenação:</span>
+              <select name="Ordenar" class="btn btn-default upper-case order-select" formControlName="sort">
+                <option class="filter-text" [value]="''" selected="selected">Sem ordenação</option>
+                <option class="filter-text" [value]="'rating'">Avaliação</option>
+                <option class="filter-text" [value]="'time'">Tempo</option>
+                <option class="filter-text" [value]="'price'">Preço</option>
+              </select> 
+            </div>
+
+            <div class="col-xs-12 filter-line">
+              <span *ngIf="showFilters" class="hidden-xs hidden-sm filter-text upper-case bold">Filtros:</span>
+
+              <div *ngIf="showFilters" class="pull-left space-category">
+                <toggle-button *ngIf="isStakeholder" [(toggle)]="isMyRecipesPressed">As minhas receitas</toggle-button>
+                <toggle-button [(toggle)]="isNoveltyPressed">Novidade</toggle-button>
+                <toggle-button [(toggle)]="isFavoritePressed">Favorito</toggle-button>
+                <toggle-button *ngIf="!breakfast && !lunchdinner" [(toggle)]="isBreakfastSelected">Peq<span class="hidden-xs hidden-sm">ueno</span>-Almoço</toggle-button>
+                <toggle-button *ngIf="!breakfast && !lunchdinner" [(toggle)]="isLunchOrDinnerSelected">Almoço/Jantar</toggle-button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+      <div class="recipe-items container">
+        <div class="row">
+          <!--<div *ngFor="let recipe of recipes" class="recipe-item col-xs-12 col-sm-6 col-md-3">-->
+          <div *ngFor="let recipe of recipes" class="recipe-item col-xs-12 col-sm-6 col-md-4">
+            <recipe-preview [recipe]="recipe" [servings]="recipe.servings" [fromPlanner]="fromPlanner" [addToPlanner]="addToPlanner"
+              (recipeToInsert)="insertRecipe($event)" (click)="selectRecipe(recipe)"></recipe-preview>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!noMoreRecipesToShow" class="load-more">
+        <button class="btn" (click)="loadMoreRecipes()">Carregar mais receitas</button>
+      </div>
+
+      <div *ngIf="noMoreRecipesToShow" class="no-recipes-warning">
+        Nenhuma receita para apresentar.
+        <div class="load-more">
+          <button class="btn" (click)="loadMoreRecipes()">Carregar mais receitas</button>
+       </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-4">
+      <!-- / Suggestion -->
+      <div class="suggestions">
+        <h3 class="highlight text-center">Sugestões</h3>
+        <h4 class="subtitle text-center">Baseadas no teu perfil alimentar.</h4>
+
+        <div *ngFor="let recipe of suggestions">
+          <recipe-preview [recipe]="recipe" [servings]="recipe.servings" [fromPlanner]="true" [addToPlanner]="false"
+            (recipeToInsert)="insertRecipe($event)" (click)="selectRecipe(recipe)">
+          </recipe-preview>
+        </div>
+
+        <div *ngIf="noSuggestions" class="go-to-settings">
+          <div>Não tem preferências.</div>
+          <button type="button" class="btn btn-default" (click)="navigateToSettings()">Definir preferências</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

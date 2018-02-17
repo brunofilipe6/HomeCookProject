@@ -1,0 +1,79 @@
+<div class="container">
+
+  <h3 class="highlight text-center">Lista de Compras</h3>
+  <h4 class="subtitle">Escolha que dias pretende quer incluir na sua lista de compras.</h4>
+
+  <div class="row date-picker-holder">
+    <div class="date-range-picker text-center">
+      <div class="slider"></div>
+      <label class="today-label">Hoje</label>
+    </div>
+  </div>
+
+  <div class="row grid-container">
+
+    <div class="sub-grid" *ngFor="let category of categoriesToDisplay">
+      <div class="shopping-category card">
+
+        <!-- Category title -->
+        <div class="shopping-category title text-uppercase">
+          <h4>{{ category.name }}</h4>
+        </div>
+
+        <!-- Iterate over category ingredients items !-->
+        <div class="shopping-category-items-holder " *ngFor="let item of items[category.id]; let i=index">
+
+          <div class="ingredient-check">
+            <!-- Checkbox checked if every ingredient usage is checked !-->
+            <!-- Checkbox changed - toggle "every ingredient usage is checked" value on ingredient usage !-->
+            <input id="check-{{item.ingredient.id}}" type="checkbox" [checked]="areShoppingItemsChecked(item.calendar)" (click)="setCheckedShoppingItems($event, item.calendar, !areShoppingItemsChecked(item.calendar))"
+            />
+            <label class="ingredient-name" [attr.for]="'check-'+item.ingredient.id">
+              <span class="fa-stack fa-md">
+                <i class="clickable fa fa-circle-thin fa-stack-2x"></i>
+                <i class="fa fa-check fa-stack-1x" *ngIf="areShoppingItemsChecked(item.calendar)" ></i>
+              </span>
+              <h5>{{item.ingredient.name}}</h5>
+            </label>
+          </div>
+
+          <div class="ingredient-quantities">
+
+            <!-- Go to usages and display checked item quantities !-->
+            <span *ngFor="let usage of item.calendar"> 
+              <button 
+                  type="button" 
+                  class="btn btn-default btn-xs quantity checked" 
+                  *ngIf="(usage.quantityChecked > 0)"  
+                  (click) = "setCheckedShoppingItem(usage, usage.quantityChecked, false)" 
+                  title="{{usage.date | friendlyDate}} - {{usage.mealTimePT}}"
+              >
+                  <span [hidden]="!usage.unit.aggregate">{{ usage.quantityChecked | number:'1.0-2'}}</span>
+                  {{usage.unit.abbreviation}}
+              </button>
+              <button 
+                  type="button" 
+                  class="btn btn-default btn-xs quantity unchecked" 
+                  *ngIf="usage.quantityChecked  < ( usage | quantity )" 
+                  (click) = "setCheckedShoppingItem(usage, getQuantity(usage) - usage.quantityChecked, true)" 
+                  title="{{usage.date | friendlyDate}} - {{usage.mealTimePT}}"
+              >
+                  <span [hidden]="!usage.unit.aggregate">{{ ((usage | quantity) - usage.quantityChecked) | number:'1.0-2' }}</span>
+                  {{usage.unit.abbreviation}}
+              </button> 
+            </span>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12 col-lg-12" *ngIf="items_loaded && !categoriesToDisplay.length">
+      <div class="position-text">
+        <p class="text-title highlight"> Sem Refeições Planeadas </p>
+        <button class="btn btn-default" type="button" (click)="redirect()"> Voltar ao planeador </button>
+      </div>
+    </div>
+  </div>
+</div>

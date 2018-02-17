@@ -1,0 +1,32 @@
+$price-plan-color: #9f9f9f;
+$price-plan-border-color: #e8e8e8;
+$price-plan-title-color: #555555;
+$feature-green-color: #33c4b6;
+$price-plan-red-color: #c6463d;
+
+.features {
+  .feature {
+    box-sizing: border-box;
+    height: 300px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    &-name {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+
+    .feature-title {
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      span {
+        font-size: $font-size-xl;
+      }
+    }
+
+    .description {
+      
+    }
+  }
+}

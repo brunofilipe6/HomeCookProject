@@ -1,0 +1,101 @@
+<div class="container" style="padding-top: 20px;">
+
+    <div id="recipe-modal" class="modal fixed-modal" tabindex="-1">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header close-div">
+                <a (click)="closeModal()"></a>       
+            </div>
+            <div class="modal-body">
+                <button *ngIf="isAdmin" (click)="navigateToRecipe(selectedRecipeId)" class="btn btn-default" type="button">Ir para detalhe da receita</button>
+
+                <recipe-detail *ngIf="selectedRecipeId" [recipeId]="selectedRecipeId" [servings]="selectedRecipeServings" [freeRecipe]="false" (closeModal)="closeModal()"></recipe-detail>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="provider">
+
+        <div class="col-xs-12">
+            <h3 class="highlight text-center"> {{ provider.name }} </h3>
+            <h4 class="subtitle text-center">Provedor de receitas.</h4>    
+        </div>
+
+        <div class="col-xs-12 col-md-5 provider-font">
+            
+            <h3 class="title">Informação</h3>
+            
+            <div class="profile-image" [style.background-image]="'url(' + provider.picture + ')'"></div>
+
+            <div class="row provider-info-div">
+                <div class="col-xs-12">
+                    <span class="title">
+                        NOME:&nbsp;
+                    </span>
+                    <span class="text-justify">
+                        {{ provider.name }}
+                    </span>
+                </div>
+
+                <div class="col-xs-12">
+                    <span class="title">
+                        PROFISSÃO:&nbsp;
+                    </span>
+                    <span class="text-justify">
+                        {{ provider.job }}
+                    </span>
+                </div>
+
+                <div class="col-xs-12">
+                    <span class="title">
+                        DESCRIÇÃO:&nbsp;
+                    </span>
+                    <span class="text-justify">
+                        {{ provider.description }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 col-md-7">
+            <h3 class="title">
+                PLANOS
+            </h3>
+            <div *ngFor="let plan of plans">
+                <plan-viewer [plan]="plan.plan" [comeFromProvider]="true" [price]="plan.bought"> </plan-viewer>
+            </div>
+            <button *ngIf="previousPlans" class="btn btn-default upper-case" 
+                    (click)="refreshListPlans(false)" >
+                <i class="fa fa-fw fa-angle-left" aria-hidden="true"></i> Anteriores
+            </button>
+            <button *ngIf="nextPlans" class="btn btn-default pull-right upper-case" 
+                    (click)="refreshListPlans(true)" >
+                Seguintes <i class="fa fa-fw fa-angle-right" aria-hidden="true"></i>
+            </button>
+        </div>
+        
+        <div class="col-xs-12 col-md-12 provider-recipes">
+            <div class="recipe-items">
+                <h3 class="title">
+                    Receitas do provedor
+                </h3>
+                <div *ngFor="let recipe of recipes" class="recipe-item col-xs-12 col-sm-3 col-md-3">
+                    <recipe-preview [recipe]="recipe" [servings]="recipe.servings" 
+                                    (click)="selectRecipe(recipe)">
+                    </recipe-preview>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <button *ngIf="previousRecipes" class="btn btn-default upper-case" 
+                    (click)="refreshListRecipes(false)" >
+                <i class="fa fa-fw fa-angle-left" aria-hidden="true"></i> Anteriores
+            </button>
+            <button *ngIf="nextRecipes" class="btn btn-default pull-right upper-case" 
+                    (click)="refreshListRecipes(true)" >
+                Seguintes <i class="fa fa-fw fa-angle-right" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>   
+</div>

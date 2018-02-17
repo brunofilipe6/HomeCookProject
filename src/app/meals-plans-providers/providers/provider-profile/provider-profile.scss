@@ -1,0 +1,53 @@
+$title-color: $theme-primary;
+
+provider-profile{
+  
+  .profile-image{
+    margin: 0 auto;
+    width: 300px; 
+    height: 300px;
+    border-radius: 50%;
+    border: 4px solid $theme-primary;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover
+  }
+
+  .provider-info-div {
+    margin-top: 20px;
+  }
+
+  .povider-font{
+    font: Dosis;
+    font-size: $font-size-lg;
+  }
+
+  .provider-recipes {
+    margin-bottom: 15px;
+  }
+
+  .title{
+    font-weight: bold;
+    color: $theme-primary;
+    text-align: center;
+    padding-bottom: 15px;
+  }
+
+  .text-justify{
+    text-align: justify;
+  }
+
+  .btn{
+    border-color: #adadad;
+    margin-bottom: 10px;
+  }
+
+  .style-left-plan{
+    background-color: #e6e6e6;
+    float: left;
+  }
+  .style-right-plan{
+    background-color: $title-color;
+    float: right;
+  }
+}

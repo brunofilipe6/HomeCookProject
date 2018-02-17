@@ -1,0 +1,538 @@
+// Variable definitions
+$font-family: 'Dosis';
+$font-weight: 100;
+
+$font-size: 14px;
+$font-size-lg: 16px;
+$font-size-xl: 18px;
+$font-size-xs: 12px;
+
+// Padding for the main content - equals to the size of the navbar
+$padding-top: 59px;
+// Equals to the footer height
+$footer-height: 30px;
+
+// Color palette definitions
+$theme-primary-bg: #909D43;
+$theme-primary: #B5B545;
+$theme-secondary: #909D43;
+$theme-error: #e95950;
+
+$soft-color: white;
+$dark-color: #333333;
+$page-bg: white;
+
+$favorite-color: #e95950;
+
+// TODO by henrique
+$top-space: 80px;
+
+// Media query variables
+$col-xs: 768px;
+$col-sm: 992px;
+$col-md: 1200px;
+
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~toastr/toastr.scss';
+@import './shared/tabs/tabs.scss';
+@import './shared/star-rating/star-rating.scss';
+@import './shared/bar-classification/bar-classification.scss';
+@import './shared/price-rating/price-rating.scss';
+@import './shared/error-message/error-message.scss';
+@import './shared/sort-button/sort-button.scss';
+@import './shared/toggle-button/toggle-button.scss';
+@import './users/auth-lock/auth-lock.scss';
+@import './users/landing/landing.scss';
+@import './users/settings/settings.scss';
+@import './users/landing/price-plans/price-plans.scss';
+@import './users/landing/features/features.scss';
+@import './users/roles/roles.scss';
+@import './recipes/recipe-list/recipe-list.scss';
+@import './recipes/recipe-detail/recipe-detail.scss';
+@import './recipes/recipe-preview/recipe-preview.scss';
+@import './shopping/shopping-list/shopping-list.scss';
+@import './backoffice/admin/admin.scss';
+@import './backoffice/recipe-edit/recipe-edit.scss';
+@import './meals-plans-providers/meals/meal-planner/meal-planner.scss';
+@import './meals-plans-providers/meals/meal-preview/meal-preview.scss';
+@import './recipes/admin-recipe-list/admin-recipe-list.scss';
+@import './meals-plans-providers/plans/plans/plans.scss';
+@import './meals-plans-providers/plans/plan-detail/plan-detail.scss';
+@import './meals-plans-providers/plans/plan-maker/plan-maker.scss';
+@import './meals-plans-providers/plans/plan-viewer/plan-viewer.scss';
+@import './meals-plans-providers/plans/admin-plan-list/admin-plan-list.scss';
+@import './backoffice/recipe-edit/recipe-edit.scss';
+@import './meals-plans-providers/providers/provider-viewer/provider-viewer.scss';
+@import './meals-plans-providers/providers/provider-profile/provider-profile.scss';
+@import './payments/payments.scss';
+@import './shared/checkbox-group/checkbox-group.scss';
+@import './payments/paypal-button/paypal-button.scss';
+@import './ingredients/ingredient-list/ingredient-list.scss';
+
+@font-face {
+  font-family: 'Dosis';
+  src: url('assets/font/Dosis-Medium.ttf') format('truetype');
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: $font-size;
+  font-family: $font-family;
+  font-weight: $font-weight;
+
+  .main {
+    nav {
+      min-height: $padding-top;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.8);
+
+      &.affix, &.affix-top {
+        transition: 0.3s;
+      }
+
+      &.affix {
+        background-color: white;
+        box-shadow: 0px 1px 5px $dark-color;
+
+        .navbar-header .navbar-brand {
+          color: $dark-color;
+          font-size: 14px;
+
+          &:hover,
+          &:focus {
+            color: $theme-primary;
+          }
+        }
+        .nav > li > a,
+        .nav > li > a:focus {
+          color: $dark-color;
+
+          &:hover {
+            color: $theme-primary;
+          }
+        }
+      }
+
+      .container {
+
+        .navbar-collapse {
+          border-color: $theme-primary;
+        }
+
+        .navbar-collapse.in, .navbar-collapse.collapsing {
+          background-color: $soft-color;
+        }
+      }
+
+
+      .navbar-brand {
+        cursor: pointer;
+        padding: 10px;
+      }
+
+      ul.nav.navbar-nav {
+        margin-top: 6px;
+
+        li {
+          cursor: pointer;
+
+          a {
+            cursor: pointer;
+            text-transform: uppercase;
+            color: $dark-color;
+
+            &.active {
+              span {
+                text-decoration: underline;
+              }
+
+              i {
+                text-decoration: none;
+              }
+            }
+          }
+
+          &.premium a {
+            color: $theme-primary-bg;
+          }
+        }
+      }
+    }
+
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+      transition: all 0.4s ease;
+
+      &:hover, &:focus {
+        border-color: $theme-primary;
+        color: $theme-primary;
+        background-color: transparent;
+      }        
+    }
+
+    .main-content {
+      min-height: calc(100% - #{$footer-height});
+      padding-top: $padding-top;
+    }
+
+    .form {
+      .form-group {
+        position: relative;
+        color: #555555;
+
+        input.ng-invalid.ng-touched  {
+          border-left: 5px solid $theme-error; /* red */
+        }
+
+      }
+    }
+
+    .icon-group {
+      position: relative;
+      width: 100%;
+
+      .icon {
+        position: absolute;
+        width: 30px;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      input {
+        padding-left: 30px;
+      }
+    }
+
+    .footer {
+      background-color: $theme-primary-bg;
+      padding: 5px;
+      color: $soft-color;
+      display: table;
+      width: 100%;
+
+      p {
+        display: table-cell;
+        vertical-align: middle;
+        margin: 0;
+      }
+    }
+  }
+}
+
+button, a, i {
+  color: #555555;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.upper-case {
+  text-transform: uppercase;
+}
+
+// Button styling
+.btn {
+  padding: 4px 25px;
+  text-transform: uppercase;
+
+
+  &.btn-default {
+    color: $theme-primary;
+    border: 1px solid $theme-primary;
+
+    &:hover {
+      color: $theme-primary;
+      border-color: $theme-primary;
+      background-color: lighten($theme-primary, 45%);
+    }
+
+    i {
+      color: $theme-primary;
+    }
+  }
+
+  &.btn-primary, &.btn-primary:active, &.btn-primary:focus {
+    background-color: $theme-primary-bg;
+    color: $soft-color;
+    border-color: $theme-primary-bg;
+  }
+}
+
+// Header styling
+h1 {
+  text-transform: uppercase;
+  font-size: 6em;
+  text-shadow: 1px 1px $dark-color;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 4em;
+  text-shadow: 1px 1px $dark-color;
+}
+
+h3 {
+  text-transform: uppercase;
+  text-shadow: 1px 1px $dark-color;
+}
+
+.highlight {
+  color: $theme-primary;
+}
+
+.overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+
+h5.overflow-ellipsis {
+  margin-bottom: 7px;
+}
+
+h4.overflow-ellipsis {
+  margin-bottom: 7px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+// Card styling (rounded)
+.card {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    background-color: white;
+    overflow: auto;
+    margin-bottom: 15px;
+    padding: 10px 15px;    
+}
+
+// Full card styling (no padding) 
+.full-card {
+  // TODO sass magic to shared properties with card 
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    background-color: white;
+    overflow: auto;
+    margin-bottom: 15px;
+}
+
+.full-card-inner-content {
+  // TODO check this?
+  padding: 7px 0;
+  display: inline-block;
+  width: 100%;
+}
+
+// Utilities
+.text-primary {
+  color: $theme-primary;
+}
+
+label {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.modal-open {
+  padding: 0 !important;
+}
+
+.modal.fixed-modal {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  .modal-dialog {
+    margin-top: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    .modal-content {
+      height: 100%;
+      overflow: auto;
+
+      .modal-header.close-div a {
+        position: fixed;
+        right: 40px;
+        z-index: 9999;
+      }
+    }
+  }
+
+}
+
+// Modal styling
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+  width: 100%;
+  margin-top: 0;
+    
+  .col-xs-12{
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+    .modal-content {
+      border-radius: 0;
+      border: none;
+      min-height: 100%;
+
+       .img-responsive{
+          -webkit-box-shadow: 1px 0px 3px 0px rgba(0,0,0,0.37);
+          -moz-box-shadow: 1px 0px 3px 0px rgba(0,0,0,0.37);
+          box-shadow: 1px 0px 3px 0px rgba(0,0,0,0.37);
+          height: 40%;
+        }
+
+      .modal-header {
+        border-bottom: 0px;
+        padding: 0;
+
+        &.close-div {
+
+          color: $theme-primary;
+          
+          a {
+            color: $theme-primary;
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.7;
+          }
+          a:hover {
+            opacity: 1;
+            cursor: pointer;
+          }
+          a:before, a:after {
+            position: absolute;
+            left: 25px;
+            content: ' ';
+            height: 33px;
+            width: 2px;
+            background-color: $theme-primary;
+          }
+          a:before {
+            transform: rotate(45deg);
+          }
+          a:after {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+
+      .modal-body { 
+        margin-top: 60px;    
+        padding: 0;   
+        
+        .form {
+          margin:  0;
+
+          .form-content {
+            padding: $padding-modal-body;
+          }
+
+        }
+
+        .tab-intro-text {
+          padding-left: 15px;
+          padding-right: 15px;
+          margin-top: 25px;
+          margin-bottom: 15px;
+          text-transform: initial;
+        }
+
+        .tabs {
+          font-size: 23px;
+          padding: 0 $padding-modal-body;
+
+          .tab-title.selected {
+            border-bottom-color: $theme-primary;
+            border-bottom-width: 3px
+          }
+        }
+      }
+
+      button[type="submit"] {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: bold;
+        width: 100%;
+        height: 65px;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+        background-color: $theme-primary-bg;
+        color: white;
+        outline: none;
+        margin-top: 9%;
+
+        &:hover {
+          box-shadow: inset 0 0 100px 20px rgba(0,0,0,.2);
+        }
+
+        i {
+            color: white;
+
+            &:before {
+              position: relative;
+              left: 2px;
+              top: 2px;
+            }
+        }
+      }
+
+    }
+  }
+
+// Not being shown by toastr scss, added here
+#toast-container > .toast {
+  opacity: 1;
+}
+
+#toast-container > .toast:hover {
+  -moz-box-shadow: 0 0 12px #000;
+  -webkit-box-shadow: 0 0 12px #000;
+  box-shadow: 0 0 12px #000;
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: alpha(opacity=100);
+  cursor: pointer;
+}
+
+// Toast colors
+#toast-container > .toast.toast-success {
+  background-color: $theme-primary-bg;
+}
+
+#toast-container > .toast.toast-error {
+  background-color: $theme-error;
+}
+
+#toast-container.toast-top-right {
+    top: 70px;
+    right: 10px;
+}

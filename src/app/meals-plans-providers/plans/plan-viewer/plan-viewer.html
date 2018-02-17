@@ -1,0 +1,46 @@
+<div class="plan" *ngIf="comeFromProvider" (click)="onClickedPlan(plan)">
+  <div class="col-xs-8 table-column">
+    <span class="title">
+        {{ plan.title }}<br>
+        <span class="hidden-xs plan-type">{{ plan.planTypePT }}</span>
+    </span>
+  </div>
+
+  <div class="col-xs-4 table-column">
+    <span *ngIf="!price" class="price">
+        {{ planPrice }} &euro;
+    </span>
+    <span *ngIf="price" class="price">
+        Comprado
+    </span>
+  </div>
+</div>
+
+
+<div class="plan" *ngIf="!comeFromProvider" (click)="onClickedPlan(plan)">
+  <div class="col-xs-6 col-md-4 table-column">
+    <span class="title">
+        {{ plan.title }}<br>
+        <span class="hidden-xs plan-type">{{ plan.planTypePT }}</span>
+    </span>
+  </div>
+
+  <div class="hidden-xs col-md-2 table-column">
+    <span *ngIf="price" class="price">
+        {{ planPrice }} &euro;
+    </span>
+    <span *ngIf="!price" class="price">
+        Comprado
+    </span>
+  </div>
+
+  <div class="hidden-xs hidden-sm col-md-4 table-column">
+    <span id="description" class="description">
+        {{ plan.description }}
+    </span>
+  </div>
+
+  <span class="col-xs-6 col-md-2 table-column image-holder">
+    <div class="provider-image" [ngStyle]="{'background-image': 'url(' + plan.provider.image + ')'}"></div>
+  </span>
+</div>

@@ -1,0 +1,65 @@
+<div id="recipe-modal" class="modal fixed-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header close-div">
+          <a (click)="closeRecipeDetails()"></a>       
+        </div>
+        <div class="modal-body">
+            <button *ngIf="isAdmin" (click)="navigateToRecipe(selectedRecipeId)" class="btn btn-default" type="button">Ir para detalhe da receita</button>
+
+          <recipe-detail *ngIf="selectedRecipeId" [recipeId]="selectedRecipeId" [addToPlanner]="false" (closeModal)="closeRecipeDetails()" ></recipe-detail>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="pull-right">
+    <a class="btn btn-default" [routerLink]="['manage-recipe', 'new']" routerLinkActive="active"><i class="fa fa-plus fa-fw"></i>Nova receita</a>
+</div>
+
+<table class="table table-responsive">
+    <thead>
+        <tr class="row">
+            <th>
+                Receita
+            </th>
+            <th>
+                Descrição
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let recipe of recipes" class="row">
+            <td class="clickable" (click)="openRecipeDetail(recipe)">
+                <div class="thumbnail text-center">
+                    <img class="img-responsive" src="{{recipe.image}}"/>
+                    {{recipe.name}}
+                </div>
+            </td>
+            <td class="clickable" [ngClass]="recipe.description.length > 50? 'continues':''" (click)="openRecipeDetail(recipe)">
+                {{recipe.description | summary:'120'}}
+            </td>
+            <td>
+                <a [routerLink]="['manage-recipe', recipe.id]" routerLinkActive="active" title="Editar"><i class="clickable fa fa-fw fa-pencil" aria-hidden="true"></i></a>
+                <a (click)="deleteRecipe(recipe)" title="Eliminar"><i class="clickable fa fa-fw fa-trash-o" aria-hidden="true"></i></a>
+            </td>  
+        </tr>
+    </tbody>
+    
+</table>
+      
+<div class="container">
+    <div class="row">
+        <button *ngIf="previousRecipe" class="btn btn-default upper-case" 
+            (click)=" refreshListRecipes(false)" >
+            <i class="fa fa-fw fa-angle-left" aria-hidden="true"></i> Anteriores
+        </button>
+        
+        <button *ngIf="nextRecipe" class="btn btn-default pull-right upper-case" 
+            (click)=" refreshListRecipes(true)" >
+            Seguintes <i class="fa fa-fw fa-angle-right" aria-hidden="true"></i>
+        </button>
+
+    </div>
+</div>
+    

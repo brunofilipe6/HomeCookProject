@@ -1,0 +1,11 @@
+<span class="sort-button">
+  <button class="btn btn-default left" [class.pressed]="isSortDesc" (click)="sortDesc()"  type="button">
+    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+  </button>
+  <button (click)="flipSort()" class="btn btn-default upper-case center"  type="button">
+    <ng-content></ng-content>
+  </button>
+  <button class="btn btn-default right" [class.pressed]="isSortAsc" (click)="sortAsc()"  type="button">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+  </button>
+</span>

@@ -1,0 +1,190 @@
+$border-radius: 8px;
+$title-color: $theme-primary;
+
+plan-maker {
+
+  .btn{
+      margin-left: -15px;
+      background: $title-color;
+      color: #ffffff;
+  }
+
+  .btn:hover{
+    color: #ffffff;
+  }
+
+  .titles{
+    color: $theme-primary-bg;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .highlighted{
+    color: #B5B545;
+  }
+
+  .plan-alert {
+    margin-top: 23px;
+  }
+
+  .plan-data {
+
+      &.affix {
+        width: inherit;
+      }
+
+      &:not(.affix) {
+        width: 100%;
+      }
+      
+
+      textarea {
+          resize: none;
+      }
+  }
+  @media(max-width: 992px){
+    .plan-data{
+        position: relative !important;    
+    }
+  }
+
+  .planner {
+    
+    margin-bottom: 20px;
+    min-height: 600px;
+    
+    .planner-day {
+
+      /* Undo of damn panel class */
+      margin-bottom: 0 !important;
+      background-color: inherit !important;
+      border: none !important;
+      border-radius: 0 !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+
+      /* Heading style for regular days */
+      & > h3 {
+        text-align: center;
+
+        padding: 8px;
+        border-radius: $border-radius;
+
+        & > span {
+          padding-left: 6%;
+          padding-right: 6%;
+        }
+
+        &.disabled {
+          background-color: lightgray;
+          color: $soft-color;
+        }
+
+        &:not(.disabled) {
+          /* Collapsed day */
+          &.collapsed {
+            color: $soft-color;
+            background-color: $theme-secondary;
+          }
+
+          /* Expanded day */
+          &:not(.collapsed) {
+            color: $theme-secondary;
+            & > span {
+              background: $page-bg;
+            }
+          }  
+        }
+
+      }
+
+      /* Set of meals style */
+      .meals-of-day {
+
+        border: solid 2px;
+        border-color: $theme-secondary;
+        border-radius: $border-radius;
+        padding-left: 7px;
+        padding-right: 7px;
+        padding-top: 20px;
+        padding-bottom: 5px;
+
+        /* Trying to be smart about heights */
+        /*display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        overflow: hidden;
+        & > div {
+          flex: 1;
+        }*/
+
+        /* Because its a fcking row */
+        margin-right: 0px;
+        margin-left: 0px;
+
+        transition: margin-top 0.8s ease;
+
+        & > .disabled {
+          opacity: 0.5;
+        }
+      }
+
+
+      /* When one day is expanded, meals of day goes up */
+      .control-meals-visibility.in > .meals-of-day {
+          margin-top: -32px;        
+      }
+  
+      /* Crazy standards. No space for everything. Reducing paddings.*/
+      .meal-holder {
+        vertical-align: top;
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+
+      .remove-meal {
+        border-radius: 50%;
+        padding: 3px;
+        height: 18px;
+        width: 18px;
+        line-height: 12px;
+        text-align: center;
+        color: $soft-color;
+        background: $theme-secondary;
+        position: absolute;
+        right: -2px;
+        top: -10px;
+        opacity: 0.9;
+
+        & > .fa-times {
+          color: $soft-color;
+          height: 12px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.empty-card {
+  height: 250px;
+  border: 2px dashed $theme-secondary;
+  border-radius: 5px;
+  opacity: 0.5;
+  margin-bottom: 15px;
+  display: table;
+  width: 100%;
+
+  .plus-container {
+    vertical-align: middle;
+    display:table-cell;
+    color: $theme-secondary;
+
+    i {
+      color: $theme-secondary;
+    }
+    a {
+      color: inherit;
+    }
+  }
+}

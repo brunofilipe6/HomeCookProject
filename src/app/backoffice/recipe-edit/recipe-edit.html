@@ -1,0 +1,229 @@
+<div *ngIf="editRecipe">
+  <h3 class="highlight text-center">Edição de receita</h3>
+</div>  
+<div *ngIf="!editRecipe">
+  <h3 class="highlight text-center">Criar receita</h3>
+</div> 
+<h4 class="subtitle text-center">Altere a informação de uma receita.</h4>
+
+<div *ngIf="loaded">
+  <div class="container">
+    <div class="row">
+      <form [formGroup]="form" class="form" (ngSubmit)="saveRecipe()">
+      <!--<div class="col-sm-4">
+        <div class="profile-image form-group">
+          <div class="center-things">
+            <p> CARREGAR IMAGEM </p>
+            <i class="fa fa-camera" aria-hidden="true" (click)="insertImage()"></i>
+          </div>
+        </div>
+      </div>-->
+      <!--<div *ngIf="!editRecipe" class="col-sm-4">
+        <div class="profile-image form-group" id="fileDisplayArea">
+          <div class="center-things">
+            <div>
+              <input type="file" (click)="loadFile(input)" id="fileInput" />
+            </div>
+          </div>  
+        </div>
+      </div>-->
+
+      <div class="col-sm-4">
+        <div class="recipe-image" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}"> 
+          <!--<div class="edit-photo pull-right">
+            <i class="fa fa-pencil-square-o" (click)="loadFile(input)" ></i>
+          </div>-->
+        </div>
+        <div class="form-group" style="margin: 15px 0;">
+          <input id="image" type="text" formControlName="image" [(ngModel)]="recipe.image" class="form-control">
+          <error-message [control]="form.controls.image"></error-message>
+        </div>
+      </div>
+
+      <div class="col-sm-8">
+        <section id="user-settings">
+          <div class="form-group">
+            <label for="name" class="control-label titles">Nome</label>
+            <input id="name" type="text" formControlName="name" placeholder="Nome da receita" [(ngModel)]="recipe.name" class="form-control">
+            <error-message [control]="form.controls.name"></error-message>
+          </div>
+
+          <div class="form-group">
+            <label for="showDescription" class="control-label titles">Sugestão</label>
+            <input id="showDescription" type="text" formControlName="showDescription" placeholder="Sugestão" [(ngModel)]="recipe.showDescription" class="form-control">
+            <error-message [control]="form.controls.showDescription"></error-message>
+          </div>
+
+          <div class="form-group">
+            <label for="description" class="control-label titles">Descrição</label>
+            <textarea id="description" [(ngModel)]="recipe.description" class="form-control" formControlName="description" placeholder="Procediementos da receita">
+            </textarea>
+            <error-message [control]="form.controls.description"></error-message>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-5 col-md-5 col">
+              <label for="price" class="control-label titles">Preço</label>
+              <div class="input-group changethisone">
+                <input id="price" type="number" [(ngModel)]="recipe.price" step="0.01" class="form-control" formControlName="price" placeholder="Insira o custo da receita" />
+                <span class="input-group-addon">
+                  <i class="fa fa-eur"></i>
+                </span>
+              </div>
+              <error-message [control]="form.controls.price"></error-message>
+            </div>
+          </div>
+          <div class="col-sm-2 col-md-2 col"></div>
+          <div class="form-group">
+            <div class="col-sm-5 col-md-5 col ">
+              <label for="servings" class="control-label titles">Pessoas</label>
+              <div class="input-group changethisone">
+                <input id="servings" type="number" [(ngModel)]="recipe.servings" class="form-control" formControlName="servings" placeholder="Insira o nº de pessoas para receita" />
+                <span class="input-group-addon">
+                  <i class="fa fa-users"></i>
+                </span>
+              </div>
+              <error-message [control]="form.controls.servings"></error-message>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col">
+            <div class="form-group">
+              <div class="col-sm-5 col-md-5 col">
+                <label for="time" class="control-label titles">Tempo</label>
+                <div class="input-group changethisone">
+                  <input id="time" type="number" [(ngModel)]="recipe.time" step="0.01" class="form-control" formControlName="time" placeholder="Insira o tempo de preparação da receita" />
+                  <span class="input-group-addon">minutos</span>
+                </div>
+                 <error-message [control]="form.controls.time"></error-message>
+              </div>
+
+              <div class="col-sm-2 col-md-2 ">
+              </div>
+          
+              <div class="col-sm-5 col-md-5 col ">
+                <label for="difficulty" class="control-label titles">Dificuldade</label>
+                <p></p>
+                <div class="btn-group btn-group-md" *ngFor="let number of [1,2,3,4,5]">                            
+                    <button id="difficulty" type="button" class="btn btn-default btn-sm" 
+                          [class.highlighted]="number == recipe.difficulty" 
+                          (click)="changeDifficult(number)"
+                    >{{number}}</button>&nbsp;
+                </div>
+                <error-message [control]="form.controls.difficulty"></error-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-5 col-sm-5 col">
+            <div class="form-group">
+              <label for="groups" class="control-label titles">Categoria</label>
+              <checkbox-group [groups]="groups" (groupUpdated)="updateCategoryFood($event)"> </checkbox-group>
+              <error-message [control]="form.controls.groups"></error-message>
+            </div>
+          </div>
+          
+          <div class="col-sm-2 col-md-2 ">
+          </div>
+        <!--Tipos da receira ex:Pequeno-almoço, almoço, jantar-->
+          <div class="col-xs-5 col-sm-5 col">
+            <div class="form-group">
+              <label for="typeRecipe" class="control-label titles">Tipo</label>
+                <div class="type-food">
+                  <div class="btn-group btn-group-md" *ngFor="let type of typeRecipes let i=index">                            
+                    <button id="typeRecipe" type="button" class="btn btn-default btn-sm btn-recipe"  
+                          [class.highlighted]="i == recipe.isBreakfast"
+                          (click)="changeType(i)"
+                    >{{type}}</button>&nbsp;
+                  </div>
+                </div> 
+              <error-message [control]="form.controls.typeRecipe"></error-message>   
+            </div>
+          </div>
+          
+          <div *ngIf="canSave">
+            <div class="form-group col-md-12 col-xs-12 col">
+              <div class="titles">LISTA DE INGREDIENTES</div>
+            </div> 
+          </div>
+          <div>
+            <div *ngIf="canSave" class="form-group"> 
+              <div class="col-md-2 col-xs-4 lineingred">
+                 <label class="titles">Quantidade</label>
+              </div>
+              <div class="col-md-4 col-xs-4 lineingred">
+                 <label class="titles">Unidade</label>
+              </div>
+              <div class="col-md-4 col-xs-4 lineingred">
+                 <label class="titles">Ingrediente</label>
+              </div>
+              <div class="col-md-2 col-xs-2 lineingred"></div>
+            </div> 
+            <div *ngFor="let ingred of lineIngreds" class="row">
+              <div class="form-group col-md-2 col-xs-12 col">
+                <input id="quantidade" type="number" step="0.01" size="3" formControlName="ingredient-{{ingred.id}}" placeholder="Quantidade"
+                  class="form-control" (change)="updateQuantity(ingred, $event.target.value)" >
+                <!--<error-message [control]="getIngredientLineControl(ingred)"></error-message>-->
+              </div>
+
+              <div class="form-group col-md-4 col-xs-12">
+                <div class="inline-input">
+                  <select name="Unidades" class="form-control" (change)="updateUnit(ingred, $event.target.value)">
+                    <option selected="selected" *ngIf="recipe != null" >{{ ingred.unit.name }}</option>
+                    <option selected="selected" *ngIf="recipe == null" [hidden]="true">UNIDADE</option>
+                    <option *ngFor="let unit of units"
+                      [hidden]="unit.name == ingred.unit.name">
+                      {{unit.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group col-md-4 col-xs-12">
+                <div class="inline-input">
+                  <select name="Produto" class="form-control" (change)="updateIngred(ingred, $event.target.value)">
+                    <option selected="selected" *ngIf="recipe != null" >{{ ingred.ingredient.name }}</option>
+                    <option selected="selected" *ngIf="recipe == null" [hidden]="true" >INGREDIENTE</option>
+                    <option *ngFor="let product of ingreds"
+                      [hidden]="validateIngred(product.name)">
+                      {{product.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-1 col-xs-12 col">
+                <i class="fa fa-check" aria-hidden="true" (click)="confirmIngred(ingred)"></i>
+              </div>
+
+              <div class="col-md-1 col-xs-12 col">
+                <i class="glyphicon glyphicon-trash" aria-hidden="true" (click)="deleteIngred(ingred)"></i>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="canSave && !editRecipe && form.valid">
+            <div class="form-group col-md-12 col-xs-12 col">
+               <button class="submit btn btn-default" (click)="insertIngred()">
+                <p>Adicionar Ingrediente</p>
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="editRecipe">
+            <div class="form-group col-md-12 col-xs-12 col">
+              <button class="submit btn btn-default" (click)="insertIngred()">
+                <p>Adicionar Ingrediente</p>
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <div class="form-group form-group col-md-12 col-xs-12 col">
+          <button class="submit btn btng" type="submit">Guardar</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

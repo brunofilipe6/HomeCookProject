@@ -1,0 +1,36 @@
+admin-recipe-list {
+  .pull-right{
+    float: right!important;
+  }
+  .media { 
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    // TODO check this
+    height: 35px;
+  }
+
+  .button {
+      border: solid 2px $theme-secondary;
+  }
+
+  .btn{
+      border: solid 2px #909D43;
+  }
+
+  .thumbnail {
+    max-width: 200px;
+    border: 1px solid $theme-primary;
+    border-radius: 2px;
+  }
+
+
+  .continues:after {
+      content: "...";
+  }
+
+  .container{
+    padding-bottom: 20;
+  }
+}

@@ -1,0 +1,26 @@
+<div>
+    <div class="type-food"> 
+        <span *ngFor="let group of groups" >
+            <span *ngIf="group.groupActive">
+                <button 
+                        type="button" 
+                        class="btn btn-default btn-xs food checked" 
+                        (click)="updateState(group.groupName)" 
+                        title="{{ group.groupName }}"
+                >   
+                {{ group.groupName }}
+                </button>
+            </span>
+            <span *ngIf="!group.groupActive">
+                <button 
+                        type="button" 
+                        class="btn btn-default btn-xs food unchecked" 
+                        (click)="updateState(group.groupName)" 
+                        title="{{ group.groupName }}"
+                >   
+                {{ group.groupName }}
+                </button>
+            </span>
+        </span>
+    </div>
+</div>

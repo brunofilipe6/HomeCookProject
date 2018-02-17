@@ -1,0 +1,235 @@
+$title-color: #555555; 
+$text-color: white;
+$spacer-color: #d0a76d;
+$background-color-even: #f7f7f7;
+$background-color-odd: #ffffff;
+
+landing {
+  .landing {
+
+    .section {
+      padding: 2em 0;
+
+      // &:nth-of-type(even) {
+      //   background: $background-color-even;
+      // }
+      // &:nth-of-type(odd) {
+      //   background: $background-color-odd;
+      // }
+
+      &-header {
+        text-align: center;
+
+        .section-title {
+          font-size: 3em;
+          font-weight: 700;
+          letter-spacing: 5px;
+          text-align: center;
+          color: $title-color;
+          text-transform: uppercase;
+          padding: 20px 0;
+        }
+
+        .spacer {
+          width: 100px;
+          height: 2px;
+          margin: auto;
+          background: $spacer-color;
+        }
+
+        .section-subtitle {
+          text-align: center;
+          padding: 15px 0;
+          margin: 0;
+          font-size: 1.15em;
+          line-height: 1.75em;
+        }
+      }
+
+      &-info {
+        padding: 2em 0;
+      }
+
+    }
+  
+    #welcome {
+      width: 100%;
+      color: $text-color;
+      margin-top: -$padding-top;
+
+      h1 {
+        @media screen and (max-width: $col-xs) {
+          font-size: 4em;
+        }
+      }
+
+      h2 {
+        @media screen and (max-width: $col-xs) {
+          font-size: 3em;
+        }
+      }
+
+      .background-image {
+
+        @media screen and (max-width: $col-md) {
+          background-position-x: 50px;
+        }
+
+        @media screen and (max-width: $col-sm) {
+          background-position-x: -50px;
+        }
+
+        @media screen and (max-width: $col-xs) {
+          background-position-x: -150px;
+        }
+
+        @media screen and (max-width: 500px) {
+          background-position-x: -240px;
+        }
+
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background-image: url('/assets/landing_full.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-position-x: 200px;
+        background-position-y: 0;
+      }
+
+
+      div.container {
+        height: 100%;
+        color: #333;
+
+        header {
+          display: table;
+          width: 100%;
+          height: 100%;
+
+          div.header-content {
+            display: table-cell;
+            vertical-align: middle;
+            padding-bottom: 125px;
+
+              h2 {
+                text-align: left;
+              }
+
+            .button-container {
+              margin-top: 25px;
+            }
+          }
+        }
+      }
+
+
+      .scroll-helper {
+        margin-top: -55px;
+        margin-bottom: 10px;
+        // color: white;
+        color: #333;
+        cursor: pointer;
+
+        i {
+          // color: white;   
+          color: #333;       
+        }
+      }
+    }
+
+    #features {
+      h2 {
+        text-align: left;
+      }
+
+      .container {
+        margin-top: 20px;
+      }
+
+      background: linear-gradient(180deg, $soft-color 60%, $theme-primary 40%);
+
+      .papaya-container {
+        background: url('assets/images/papaya.jpg') no - repeat center center;
+        height: 300px;
+        background-size: contain;
+      }
+
+      .section-subtitle {
+        font-size: 1.3em;
+      }
+    }
+
+    #prices {
+      background: url('assets/images/veggies_pattern.png') repeat top left;
+      padding-top: 3em;
+
+      .join-us {
+        padding-top: 2em;
+        padding-bottom: 2em;
+
+        a {
+          color: #3b5998;
+          line-height: 4em;
+          text-decoration: none;
+          cursor: pointer;
+          font-size: 1.5em;
+
+          i {
+            color: inherit;
+          }
+        }
+
+        .section-subtitle {
+          max-width: 600px;
+          margin: 3em auto 0;
+        }
+      }
+
+      h2 > span {
+        background: $soft-color;
+      }
+
+      p.section-subtitle {
+        margin-top: 3em;
+        background: $soft-color;
+      }
+
+      .social-icons {
+        padding-top: 10px;
+        margin-bottom: 35px;
+        text-align: center;
+
+        .btn {
+          margin-right: 15px;
+          margin-left: 15px;
+
+          &.btn-clear {
+            border: none;
+          }
+
+          i {
+            font-size: 25px;
+            color: #555;
+          }
+
+        }
+      }
+
+      .button-container {
+        margin-top: 15px;
+        margin-bottom: 4em;
+
+        button {
+          font-size: 1.3em;
+        }
+      }
+
+      .bg-white {
+        background: white;
+      }
+    }
+  }
+}

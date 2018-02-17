@@ -1,0 +1,41 @@
+<div class="">
+  <!-- Card -->
+  <div class="full-card">
+    <!-- Image -->
+    <div class="media-full-width clickable" (click)="openDetail()" 
+      [ngStyle] = "{'background-image':'url('+recipe.image+')'}">
+    </div>
+    <!-- Content -->
+    <div class="full-card-inner-content" >
+      
+      <div class="recipe-heading col-xs-12 clickable" (click)="openDetail()">
+        <span class="meal-time"> {{mealTime}} </span>
+        <h4> {{recipe.name}} </h4>
+        <p [ngClass]="recipe.description.length > 75? 'continues':''" > {{recipe.description | summary:'75' }} </p>
+      </div>
+
+      <div class="recipe-time col-xs-4 col-md-12 col-lg-4">
+        <span title="Duração (minutos)"><i class= "glyphicon glyphicon-time" > </i> {{recipe.time}}</span>
+      </div>
+        
+      <div class="servings col-xs-4 col-md-12 col-lg-4" title="Doses" *ngIf="showServings">
+        <span>
+          <i class="fa fa-user" aria-hidden="true" > </i>
+          <i aria-hidden="true" class="fa fa-minus clickable vote-button"
+              (click)="updateNumberOfServings($event,-1)" ></i>
+          <div class="vote-count"> {{ servings }}</div>
+          <i aria-hidden="true" class="fa fa-plus clickable vote-button" 
+            (click)="updateNumberOfServings($event,1)" ></i>
+          </span>
+      </div>
+      <div class="col-xs-4 col-md-12 col-lg-4" *ngIf="!showServings">
+      </div>
+
+      <div class="difficulty col-xs-4 col-md-12 col-lg-4" style="height:17px" >
+        <bar-classification value={{recipe.difficulty}} title="Dificuldade"> </bar-classification>
+      </div>
+    </div>
+    <!-- / Content -->    
+  </div>
+  <!-- / Card -->
+</div>

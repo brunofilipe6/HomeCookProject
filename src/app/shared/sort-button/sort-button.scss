@@ -1,0 +1,40 @@
+.sort-button {
+  display: inline-flex;
+  margin-right: 5px;
+
+  .btn {
+    height: 30px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .left, .right {
+    padding: 0 8px;
+  }
+
+  .left, .right, .center {
+    margin: 0 !important;
+  }
+
+  .left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .center {
+    border-radius: 0;
+    padding: 4px 15px;
+  }
+
+  .pressed {
+    background-color: $theme-primary-bg !important;
+    i {
+      color: white !important;
+    }
+  }
+}

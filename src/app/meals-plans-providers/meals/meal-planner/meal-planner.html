@@ -1,0 +1,119 @@
+<div id="recipe-browser" class="modal fixed-modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header close-div">
+        <a (click)="closeBrowser()"></a>
+      </div>
+      <div class="modal-body">
+        <recipe-list *ngIf="adding_meal" 
+          [fromPlanner]="true" [addToPlanner]="true" [breakfast]="breakfast" [lunchdinner]="lunchdinner"
+          [mealTime]="mealTimesTranslations[mealTimeToAddMeal] ? mealTimesTranslations[mealTimeToAddMeal] : mealTimeToAddMeal"
+          (insertRecipe)="addRecipeToPlanner($event)" (closeRecipeList)="updateStateModalRecipeList($event)">
+        </recipe-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="recipe-modal" class="modal fixed-modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header close-div">
+        <a (click)="closeDetails()"></a>       
+      </div>
+      <div class="modal-body">
+        <button *ngIf="isAdmin" (click)="navigateToRecipe(viewRecipeId)" class="btn btn-default" type="button">Ir para detalhe da receita</button>
+
+        <recipe-detail *ngIf="viewRecipeId" [recipeId]="viewRecipeId" [servings]="viewRecipeServings"
+                      [addToPlanner]="recipeListOpenned" (insertRecipe)="addRecipeToPlanner($event)" (closeModal)="closeDetails()" >
+        </recipe-detail>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  
+  <!-- Planner content -->
+  <div class="planner col-xs-12 col-md-8" id="accordion">  
+
+    <h3 class="highlight text-center">Planeador</h3>
+    <h4 class="subtitle text-center">Escolhe as refeições que queres comer ao longo da semana.</h4>    
+
+    <div  *ngIf="loaded" >
+      <!-- Going through days in calendar -->
+      <div class="panel planner-day"*ngFor="let day of meal_calendar; let i=index">
+      
+        <h3 class="clickable text-uppercase friendly-date " 
+          [attr.data-parent]="'#accordion'" [attr.data-toggle]="'collapse'" 
+          [attr.data-target]="'#date-meal-' + i"  [attr.aria-expanded]="i==1? 'true':'false'" 
+          [class.collapsed]="i!==1">
+            <span>{{ day.date | friendlyDate }}</span>        
+        </h3>
+
+        <div id="date-meal-{{i}}"  class="collapse control-meals-visibility" [class.in]="i==1">
+          <div class="meals-of-day row">
+            <!-- Going through meals on the day -->
+            <div *ngFor="let mealTime of mealTimes; let j = index" class="meal-holder col-xs-12 col-sm-4 col-md-4 no-padding" >
+              
+              <span class="clickable pull-right remove-meal" *ngIf="day[mealTime] !== null" (click)="removeMeal(i, mealTime)"><i class="fa fa-times"></i></span>
+
+              <meal-preview *ngIf="day[mealTime] !== null"
+                [recipe]="day[mealTime].recipe" [servings]="day[mealTime].servings" 
+                [mealTime]=" mealTimesTranslations[mealTime] ? mealTimesTranslations[mealTime] : mealTime" 
+                (updateServings)="updateServings($event.servings,i, mealTime)"
+                (openRecipeDetail)="openDetails(day[mealTime])"
+                >
+              </meal-preview>
+
+              <div class="empty-card clickable text-center" (click)="addMeal(i, mealTime)" *ngIf="day[mealTime] === null">
+                <div class="plus-container"> 
+                  <a>
+                    <i class="fa fa-plus fa-3x"></i>
+                    <br>
+                    Adicionar {{mealTimesTranslations[mealTime] ? mealTimesTranslations[mealTime] : mealTime}}
+                  </a>
+                </div>
+              </div>
+
+            </div>
+            <!-- / Going through meals on the day -->
+
+          </div>
+        </div>
+      </div>
+      <!-- / Going through days in calendar -->
+    </div>
+
+  </div>
+
+  <div id="plans-accordion" class="bought-plans col-xs-12 col-md-4">
+    <h3 class="highlight text-center">Planos</h3>
+    <h4 class="subtitle text-center">Os planos que já compraste.</h4>
+    
+    <div class="buy-more-plans" *ngIf="noBoughtPlans">
+      <div>Nenhum plano comprado.</div>
+      <button type="button" class="btn btn-default" (click)="navigateToPlans()">Comprar planos</button>
+    </div>
+
+    <div class="plan-holder panel" *ngFor="let plan of plans; let i = index">
+      <div class="plan collapsed" data-parent="#plans-accordion" data-toggle="collapse" aria-expanded="false" [attr.data-target]="'#plan-info-' + i">
+        <span class="title">{{plan.title}}</span>
+        <div class="provider-image" [ngStyle]="{'background-image': 'url(' + plan.provider.image + ')'}"></div>
+      </div>
+
+      <div id="plan-info-{{i}}" class="collapse">
+        <div class="plan-info">
+          <div class="plan-type">Tipo de plano: <span>{{getPlanTypePT(plan)}}</span></div>
+          <div class="description">{{plan.description}}</div>
+
+          <button type="button" class="add-to-planner btn btn-primary" (click)="addToPlanner(plan)">
+            Adicionar ao plano
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<provider-viewer></provider-viewer>

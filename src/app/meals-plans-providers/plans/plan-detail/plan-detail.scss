@@ -1,0 +1,106 @@
+.plan-detail {
+
+  .title {
+    font-size: 2em;
+    display: inline;
+    text-shadow: none;
+  }
+
+  h4 {
+    margin-top: 25px;
+  }
+
+  .bought-icon {
+    vertical-align: top;
+    color: $theme-primary;
+    border: 2px solid $theme-primary;
+    padding: 6px 12px;
+
+    .fa-check-circle {
+      color: $theme-primary;
+    }
+  }
+
+  .base-info {
+    display: flex;
+    padding: 3em 0;
+ 
+    .punchline {
+      flex-grow: 1;
+      padding: 6em;
+
+      .description {
+        font-size: 1.3em;
+        // line-height: 50px;
+        margin: 0;
+        // margin-left: 3.5em;
+        font-style: italic;
+        color: #999;
+        margin-left: 85px;
+
+        // &:before {
+        //   display: block;
+        //   height: 0;
+        //   content: "“";
+        //   // margin-left: -.90em;
+        //   font: italic 400%/1 Cochin,Georgia,"Times New Roman", serif;
+        //   color: #999;
+        //   // line-height: 90px;
+        // }
+      }
+
+      .description, .provider-image {
+        // float: left;
+      }
+
+      .provider-image {
+        float: left;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+    }
+    
+
+    .image, .provider-image {
+      border-radius: 5px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .image {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  .tabs {
+    .tab-title {
+      font-size: 1.3em;
+
+      &.selected {
+        border-bottom: 2px solid $theme-secondary;
+      }
+    }
+  }
+
+  .tab-content {
+    min-height: 300px;
+    padding: 1em;
+  }
+
+  .buy {
+    padding: 3em 0;
+    margin: 0 auto;
+    text-align: center;
+
+    .price {
+      font-size: 1.5em;
+    }
+
+    .paypal-button {
+      margin-top: 1em;
+    }
+  }
+}

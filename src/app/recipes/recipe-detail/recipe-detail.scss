@@ -1,0 +1,317 @@
+$over-image-color: whitesmoke;
+$servings-size: 2em; 
+/*33px;*/
+$time-size: 2em;
+$group-size: 2em;
+
+@media screen and (max-width: $col-xs) {
+  .recipe-property-icon i {
+    width: 1.3em !important;
+    height: 1.3em !important;
+    background-size: 1.3em !important;
+  }
+
+  .recipe-property-vallue {
+    font-size: 1em !important;
+  }
+
+  .recipe-desc-container {
+    text-align: center;
+    ul li:before {
+      display: none !important;
+    }
+  }
+}
+
+@media screen and (max-width: $col-sm) {
+  .recipe-property-icon i {
+    width: 1.5em !important;
+    height: 1.5em !important;
+    background-size: 1.5em !important;
+  }
+
+  .recipe-property-vallue {
+    font-size: 1.3em !important;
+  }
+}
+
+/*27px;*/
+$price-size: 2em;
+/*30px;*/
+
+recipe-detail{
+
+  .container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .pull-right{
+    padding-right: 8px;
+    padding-top: 10px;
+  }
+
+  .image{
+    // TODO: maybe use media queries to set height
+    height: 350px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  
+    /* Setting style for layer over image to darken it */
+    .over-image {
+      background: rgba(0, 0, 0, 0.2);
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Setting style for inner content of image */
+    .inner-content {
+      width: 80%;
+      left: 10%;
+      height: 85%;
+      top: 5%;
+      display: table;
+      text-shadow: 2px 2px black;
+      
+      & > div {
+        display: table-cell;
+        vertical-align: middle;
+
+        .title{
+          font-size: 5em;
+          color: $over-image-color;
+
+          @media screen and (max-width: $col-xs) {
+            font-size: 2em !important;
+          }
+
+          @media screen and (max-width: $col-sm) {
+            font-size: 3em;
+          }
+        }
+
+        .rating i {
+          color:$over-image-color;
+          font-size: 1.5em;
+
+          @media screen and (max-width: $col-xs) {
+            font-size: 1em !important;
+          }
+
+          @media screen and (max-width: $col-sm) {
+            font-size: 1.3em;
+          }
+        }
+      }
+    }
+
+    /* Setting style for favorite action on image */
+    .favorite > i {
+      margin: 10px;
+      cursor: pointer;
+      font-size: 2.5em;
+      color: $favorite-color;
+    }
+
+    /* Setting style for bottom content of image */
+    .bottom-content {
+      height: 15%;
+      width: 100%;
+      top: 5%;
+      background-color: rgba(00,0,0,0.5);
+      color: white;
+    }
+  }
+
+  /* Setting style for all recipe properties, their icons anc values */
+  .recipe-property {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+
+    .recipe-property-icon {
+      display: table-cell;
+      vertical-align: middle;
+      & > i {
+        display: block;
+        text-indent: -9999px;
+      }
+    }
+
+    .recipe-property-value {
+      vertical-align: middle;
+      font-size: 1.3em;
+      padding: 0 10px;
+      display: table-cell;
+    }
+
+  }
+
+  /* Setting style for specific recipe properties */
+
+  /* Setting style for servings property */
+  .servings {
+    .servings-icon {
+      & > i {
+        width: $servings-size;
+        height: $servings-size;
+        background: url(/assets/serving.svg);
+        background-size: $servings-size $servings-size;
+      }
+    }
+    .servings-number {
+      line-height: $servings-size;
+    }
+  }
+
+  /* Setting style for time property */
+  .time {
+    .time-icon {
+      & > i {
+        width: $time-size;
+        height: $time-size;
+        background: url(/assets/time.svg);
+        background-size: $time-size $time-size;
+      }
+    }
+    .time-number {
+      line-height: $time-size;
+    }
+  }
+  
+  /* Setting style for price property */
+  .price {
+    .price-icon {
+      & > i {
+        width: $price-size;
+        height: $price-size;
+        background: url(/assets/price-tag.svg);
+        background-size: $price-size $price-size;
+      }
+    }
+    .price-number {
+      line-height: $price-size;
+    }
+  }
+
+  /* Setting style for difficulty property */
+  .difficulty {
+    .bar-classification {
+      display: table-cell;
+      vertical-align: middle;
+
+      .bar{
+        border: 3px;
+        border-radius: 3px;
+        width: 8px;
+        height: 26px;
+        margin-right: 2px;
+      }
+    }
+  }
+  
+  .section-title {
+    font-size: 1.5em;
+  }
+
+  .section-title a{
+    cursor: pointer;
+  }
+
+  .fa.fa-chevron-left {
+      font-size: 30px;
+      cursor: pointer;
+  }
+
+  .icons{
+      /* Setting style for all groups, their icons  */
+      .group-property {
+        margin: 15px 0 -25px 0px;
+
+        .group-property-icon {
+          i {
+            display: block;
+            width: $group-size;
+            height: $group-size;
+          }
+        }
+
+        .group-vegan-icon i {
+          background: url(/assets/groups/vegan.svg);
+          background-size: $group-size $group-size;
+        }
+
+        .group-meat-icon i {
+          background: url(/assets/groups/meat.svg);
+          background-size: $group-size $group-size;
+        }
+
+        .group-fish-icon i {
+          background: url(/assets/groups/fish.svg);
+          background-size: $group-size $group-size;
+        }
+
+      }
+  }
+
+  div.recipe-desc-container {
+    margin-top: 40px;
+
+     /* Seeting style for list items */
+    ul.ingredient-list {
+      padding-left: 11px;
+      list-style: none;
+
+      li {
+        position: relative;
+      }
+
+      li:before {
+          /*
+          The desired width gets defined in two places: The element width, and background size.
+          The height only gets defined once, in background size.
+          */
+          position: absolute;
+          display: block;
+          content: '\2022'; /* bullet point, for screen readers */
+          text-indent: -999999px; /* move the bullet point out of sight */
+          left: -.75em;
+          width: .4em; /* desired width of the image */
+          height: 1em; /* unrelated to image height; this is so it gets snipped */
+          background-repeat: no-repeat;
+          background-image: url(assets/arrow.svg);
+          background-size: .4em .7em;
+          background-position: 0 .3em;
+      }
+    }
+
+    .provider-container {
+      margin: 15px 0;
+    }
+
+    .description {
+      text-align: justify;
+      white-space: pre-wrap;
+    }
+    
+  }
+
+  .bottom-button {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+  }
+
+  .font {
+    font-family: "Dosis";
+    .bold {
+      font-weight: bold;
+    }
+  }
+
+  .dark-green {
+      color: #909D43;
+  }
+}
+

@@ -1,0 +1,34 @@
+<div class="container plans">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row title">
+        <h3 class="highlight text-center">Planos Alimentares</h3>
+        <h4 class="subtitle text-center">Vê os planos que já compraste, e encontra o plano perfeito para ti.</h4>
+      </div>
+
+      <tabs>
+        <tab tabTitle="Os meus planos">
+          <div *ngIf="!boughtPlans.length" class="empty-plans col-xs-12 text-center">
+            <div>
+              Ainda não comprou nenhum plano!
+            </div>
+          </div>
+          <div *ngFor="let plan of boughtPlans" class="col-xs-12">
+              <plan-viewer [plan]="plan" [comeFromProvider]="false" [price]="false"> </plan-viewer>
+          </div>
+        </tab>
+
+        <tab tabTitle="Mais planos">
+          <div *ngIf="!plans.length" class="empty-plans col-xs-12 text-center">
+              <div>
+                Já comprou todos os planos!
+              </div>
+          </div>
+          <div *ngFor="let plan of plans" class="col-xs-12">
+             <plan-viewer [plan]="plan" [comeFromProvider]="false" [price]="true"> </plan-viewer>
+          </div>
+        </tab>
+      </tabs>
+    </div>
+  </div>
+</div>

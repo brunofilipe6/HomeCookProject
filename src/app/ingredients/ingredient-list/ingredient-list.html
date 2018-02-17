@@ -1,0 +1,12 @@
+<div class="ingredients container"> 
+  <div class="row ingredient" *ngFor="let ingredient of ingredients">
+    <div class="col-xs-4">
+      {{ingredient.name}}
+    </div>
+    <div class="col-xs-8">
+      <select [ngModel]="ingredient.categoryId" (ngModelChange)="ingredientChange(ingredient, $event)">
+        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+      </select>
+    </div>
+  </div>
+</div>

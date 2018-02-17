@@ -1,0 +1,16 @@
+<div class="container">
+    <div cass="row">
+        <div class="col-md-12 title-holder">
+            <h3 class="highlight text-center">Provedores de receitas</h3>
+            <h4 class="subtitle text-center">Conhece melhor a equipa que mantém as receitas perfeitas.</h4>    
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4" *ngFor = "let provider of providers">
+            <div class="my-container" (click)="redirect(provider.provId)" [ngStyle]="{'background-image': 'url(' + provider.image + ')' }" >
+                <div class="text"> 
+                  <div class="text-bold"> {{ provider.name }} </div>
+                  {{ provider.occupation }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

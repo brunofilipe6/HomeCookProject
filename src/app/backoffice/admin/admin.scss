@@ -1,0 +1,15 @@
+admin {
+    padding-top: 2em;
+
+    .tab-content {
+        position: relative;
+    }
+
+    .tab-title {
+        font-size: 1.5em;
+
+        &.selected {
+            border-bottom: 2px solid $theme-secondary;
+        }
+    }
+}

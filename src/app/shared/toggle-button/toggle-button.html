@@ -1,0 +1,6 @@
+<span class="toggle-button">
+  <button type="button" class="btn btn-default upper-case" data-toggle="toggle" (click)="clicked($event)">
+    <i *ngIf="toggle" class="fa fa-check"></i>
+    <ng-content></ng-content>
+  </button>
+</span>

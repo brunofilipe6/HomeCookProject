@@ -1,0 +1,28 @@
+bar-classification {
+    display: table;
+    height: inherit;
+    
+    .bars {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .bar {
+        display: inline-block;
+        border: 2px;
+        border-radius: 2px;
+        // TODO check this
+        width: 3px;
+        height: 12px;
+        margin-right: 1px;
+
+        &:not(.filled) {
+          border-color: lightgray;
+          background-color: lightgray;
+        }
+        &.filled {
+            border-color: $theme-primary;
+            background-color: $theme-primary;
+        }
+    }
+}

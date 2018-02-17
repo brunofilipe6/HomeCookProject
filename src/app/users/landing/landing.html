@@ -1,0 +1,69 @@
+<div class="landing">
+
+  <section id="welcome">
+    <div class="background-image"></div>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <h1><span class="highlight">Planeia</span><br>as tuas refeições.</h1>
+          <h2>Organiza a tua cozinha.</h2>  
+          <div class="button-container">
+            <button class="btn btn-primary" type="button" (click)="authenticate($event)">Junta-te a nós</button>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <div class="col-xs-12 scroll-helper" (click)="_navigateToTarget('#features')">
+      <div class="col-xs-12 text-center text-uppercase">
+        <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i><br>Scroll
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container">
+      <header>
+        <div class="col-xs-12 col-md-8">
+          <h2>Bem-vindo ao <span class="highlight">Homecook</span></h2>
+          <p class="section-subtitle">Planear refeições é um desafio complexo e demorado. Encontrar boas receitas e comprar os ingredientes necessários requer tempo e organização, o que nunca é fácil de conciliar com uma vida atarefada.</p>
+          <p class="section-subtitle">Homecook é um serviço web para o planeamento de refeições, ajudando os seus utilizadores a estabelecer regimes alimentares saudáveis e variados.</p>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-4 papaya-container"></div>
+        
+      </header>
+      <div class="col-xs-12 section-info">
+        <features></features>
+      </div>
+    </div>
+  </section>
+
+  <section id="prices" class="section">
+    <div class="container">
+      <header class="section-header">
+        <h2><span class="highlight">Preços</span></h2>
+        <p class="section-subtitle">Experimenta a nossa plataforma sem qualquer tipo de condicionamento. Se quiseres ter acesso a conteúdos exclusivos dos chefs X e Y, o plano Premium é o ideal para ti.</p>
+      </header>
+      <div class="section-info">
+        <price-plans [isClickable]="false" [role]="premiumRole"></price-plans>
+      </div>
+    
+      <header id="contacts" class="join-us section-header">
+        <h2><span class="highlight">Junta-te a nós</span></h2>
+        <p class="section-subtitle">
+          Se precisas de ajuda para te organizares na cozinha o <span class="highlight"><u>Homecook</u></span> está aqui para te ajudar.
+          <br>
+          Segue as últimas novidades, acompanhando-nes nas redes sociais:
+          <a href="https://www.facebook.com/Homecook-1194063733995323">
+          <br>
+          <i class="fa fa-facebook" aria-hidden="true"></i>acebook</a>
+        </p>
+        
+      </header>
+      <div class="button-container text-center">
+        <button class="btn btn-primary" type="button" (click)="authenticate($event)">Não hesites em experimentar</button>
+      </div>
+    </div>
+  </section>
+</div>

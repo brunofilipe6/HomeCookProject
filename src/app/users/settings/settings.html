@@ -1,0 +1,91 @@
+<div class="settings container">
+  <div class="row">
+    <h3 class="highlight text-center">O Meu Perfil</h3>
+    <h4 class="subtitle text-center">Altera as definições da tua conta pessoal.</h4>    
+    <form [formGroup]="form" class="form" (ngSubmit)="saveSettings()">
+      <div class="hidden-xs col-sm-5">
+        <div class="row profile-image">
+          <img src="/assets/images/profile.jpg" alt="Profile" class="img-rounded">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7">
+        <section id="user-settings">
+          <div class="form-group">
+            <label for="name" class="control-label">Nome</label>
+            <div class="icon-group">
+              <label for="name" class="icon fa fa-user"></label>
+              <input id="name" type="text" formControlName="username" placeholder="" class="form-control">
+            </div>
+            <error-message [control]="form.controls.username"></error-message>
+          </div>
+          <div class="form-group">
+            <label for="email" class="control-label">Email</label>
+            <div class="icon-group">
+              <label for="email" class="icon fa fa-envelope-o"></label>
+              <input id="email" type="text" formControlName="email" placeholder="" class="form-control">
+            </div>
+            <error-message [control]="form.controls.email"></error-message>
+          </div>
+
+          <div formGroupName="passwords">
+            <div class="form-group">
+              <label for="password" class="control-label">Password</label>
+              <div class="icon-group">
+                <label for="password" class="icon fa fa-lock"></label>
+                <input id="password" type="password" formControlName="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" class="form-control">
+              </div>
+              <error-message [control]="form.controls.passwords.controls.password"></error-message>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword" class="control-label">Confirme a Password</label>
+              <div class="icon-group">
+                <label for="confirmPassword" class="icon fa fa-lock"></label>
+                <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" class="form-control">
+              </div>
+              <error-message [control]="form.controls.passwords.controls.confirmPassword"></error-message>
+            </div>
+            <error-message [control]="form.controls.passwords"></error-message>
+          </div>
+
+        </section>
+      </div>
+      <section id="preferences">
+        <div class="col-xs-12 col-sm-7">
+          <div class="form-group form-center">
+            <i class="fa fa-smile-o servings"></i><br />
+            <span class="control-label">Cozinho habitualmente para</span>
+            <br />
+            <button type="button" class="btn btnLight" (click)="decreaseServings()"><i class="fa fa-minus"></i></button>
+            
+            <input id="servings" type="number" formControlName="servings" class="form-control inline-input">
+            
+            <button type="button" class="btn btnDark" (click)="increaseServings()"><i class="fa fa-plus"></i></button>
+            <br />
+            <span class="control-label">pessoas</span>
+
+            <error-message [control]="form.controls.servings"></error-message>
+          </div>
+        </div>
+      </section>
+
+      <div class="col-xs-12 col-sm-7">
+        <div class="form-group" >
+          <h4 class="title"> Preferências Alimentares </h4>
+          <checkbox-group [groups]="groups" (groupUpdated)="updateCategoryFood($event)"> </checkbox-group>
+          <error-message [control]="form.controls.groups"></error-message>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-3">
+        <div class="form-group">
+          <button type="button" class="cancel btn btn-default" (click)="cancel()">Cancelar</button>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <div class="form-group form-right">
+          <button type="submit" class="submit btn">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

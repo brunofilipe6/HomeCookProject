@@ -1,0 +1,9 @@
+admin-plan-list {
+    .button {
+        border: solid 2px $theme-secondary;
+    }
+
+    .continues:after {
+        content: "...";
+    }
+}

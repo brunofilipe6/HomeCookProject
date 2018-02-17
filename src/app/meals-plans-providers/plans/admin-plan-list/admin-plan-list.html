@@ -1,0 +1,39 @@
+
+<div class="pull-right">
+    <a class="btn btn-default" [routerLink]="['manage-plan', 'new']" routerLinkActive="active"><i class="fa fa-plus fa-fw"></i>Novo plano</a>
+</div>
+
+<table class="table table-responsive">
+    <thead>
+        <tr class="row">
+            <th>
+                Título
+            </th>
+            <th>
+                Tipo de plano
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let plan of plans" class="row">
+            <td>
+                {{plan.title}}
+            </td>
+            <td>
+                {{plan.planType}}
+            </td>
+            <td [ngClass]="plan.description.length > 120? 'continues':''">
+                {{plan.description | summary:'120'}}
+            </td>
+            <td>
+                <a [routerLink]="['manage-plan', plan.id]" routerLinkActive="active" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a (click)="deletePlan(plan)" title="Eliminar"><i class="clickable glyphicon glyphicon-trash" aria-hidden="true" ></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

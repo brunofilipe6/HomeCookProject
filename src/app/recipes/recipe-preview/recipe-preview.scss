@@ -1,0 +1,123 @@
+$padding-recipe-content: 5px;
+$group-size: 1.4em;
+
+.recipe-item {
+  height: 280px;
+  padding: 3px 2px;
+  margin: 0;
+  cursor: pointer;
+
+  @media screen and (max-width: $col-md) {
+    height: 200px;
+  }
+
+  .card {
+    position: relative;
+    // display: flex;
+    // flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+
+    &:hover {
+      // Add some shadow
+    }
+
+    &-image {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: auto;
+      transform: scale(1);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    &-gradient {
+      background-image: linear-gradient(0deg,rgba(0,0,0,.9) 15%,transparent 65%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .content {
+      // flex-grow: 1;
+      // padding: $padding-recipe-content;
+      padding: 0 10px;
+      position: absolute;
+      bottom: 10px;
+      color: #fff;
+
+      width: 100%;
+      
+      .price, .time {
+        font-size: 12px;
+      }
+
+      .bottom {
+        /* Setting style for all groups, their icons  */
+        .group-property {
+          padding: 0;
+
+          .group-property-icon {
+            i {
+              display: block;
+              width: $group-size;
+              height: $group-size;
+            }
+          }
+
+          .group-vegan-icon i {
+            background: url(/assets/groups/vegan.svg);
+            background-size: $group-size $group-size;
+          }
+
+          .group-meat-icon i {
+            background: url(/assets/groups/meat.svg);
+            background-size: $group-size $group-size;
+          }
+
+          .group-fish-icon i {
+            background: url(/assets/groups/fish.svg);
+            background-size: $group-size $group-size;
+          }
+
+        }
+      }
+
+      .dificulty, .time {
+        float: left;
+        margin-right: 7px;
+      }
+
+      .dificulty {
+        margin-top: 3px;
+
+        .bar {
+          width: 5px;
+          height: 15px;
+          border-radius: 0;
+        }
+      }
+
+      .favorite {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding-right: 10px;
+
+        i {
+          // color: $theme-primary-bg;
+          color: $favorite-color;
+        }
+      }
+    }
+  }
+}
